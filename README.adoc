@@ -79,9 +79,6 @@ So just to warm up your machine clone https://github.com/GuilhermeCamposo/fuse-w
 
     oc patch webapp tutorial-web-app --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/GuilhermeCamposo/fuse-workshop-doc.git#master" }}}}' -n webapp
 
-. Logged as admin user
-
-    support/setup.sh
 
 Now, you must see those walkthrough sessions in initial page.
 

@@ -5,7 +5,7 @@
 
 = Lab 2 - Integration with Files and FTP
 
-Explore the basic concepts of Camel, with a use case with FILE and FTP components doing some basic transformations with POJO, XML and JSON.
+Explore the basic concepts of Camel, with a use case with FILE  doing some basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-process-diagram.png[]
 
@@ -125,7 +125,7 @@ from("direct:book-to-file")
 
 The line `.convertBodyTo(String.class)` is just invoking the `toString` method on the `Order` class. After that we are saving all files to the filesystem.
 
-Run the integration and check if the files were saved. 
+Run the integration and check if the files were saved.
 To check if the file was save, we are going to list the files of the `/tmp/fuse-workshop` directory.
 
 {empty} +
@@ -254,69 +254,69 @@ Run the integration.
 [type=verification]
 Do you see the last XML files generated with the process attribute is true?
 
-[time=10]
-== FTP Server (SKIP THIS LAB - CURRENTLY NOT WORKING)
-
-Now, let's create another route to upload those files to an FTP server. The FTP server credentials will be provided by the instructor during the class.
-
-Implement a route that takes all files in the camel directory and publishes it in the FTP server.
-
-image::./images/lab02-ftp-server-diagram.png[]
-
-* FTP Host: `<FTP HOST>`
-* FTP Username: `{user-username}`
-* FTP Password: `<FTP PASSWORD>`
-* FTP Directory: `/var/fuse-workshop/{user-username}`
-
-Also, remember to configure the component to *delete the files* after being consumed.
-
-The sample for the camel directory would be:
-
-[source,java,subs="attributes"]
-----
-from("file:/tmp/fuse-workshop/camel?delete=true")
-    .log("Uploading camel orders to ftp")
-    .to("ftp://{user-username}@##ftp-host##?password=##ftp-password##");
-----
-
-Do the same with the files on the camel directory.
-
-Run the integration.
-
-image::./images/lab02-filezilla-files.png[]
-
-[type=verification]
-Do you see the files uploaded to FTP server? Were they also removed from the filesystem?
-
-*Just as an additional note*
-
-If you would like to consume files from FTP and work with them as Java Objects, you would use the `unmarshal()` method instead of `marshal()`. See an example:
-
-[source,java]
-----
-    .log("reading files from ftp")
-    .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
-----
-
-[time=2]
-=== Boilerplate code
-
-To make this lab work, the following dependencies were added to the project (in `pom.xml`):
-
-    <!-- PARSER -->
-    <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-jackson-starter</artifactId>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-xstream</artifactId>
-    </dependency>
-    <!-- FTP -->
-    <dependency>
-        <groupId>org.apache.camel</groupId>
-        <artifactId>camel-ftp</artifactId>
-    </dependency>
+// [time=10]
+// == FTP Server (SKIP THIS LAB - CURRENTLY NOT WORKING)
+//
+// Now, let's create another route to upload those files to an FTP server. The FTP server credentials will be provided by the instructor during the class.
+//
+// Implement a route that takes all files in the camel directory and publishes it in the FTP server.
+//
+// image::./images/lab02-ftp-server-diagram.png[]
+//
+// * FTP Host: `<FTP HOST>`
+// * FTP Username: `{user-username}`
+// * FTP Password: `<FTP PASSWORD>`
+// * FTP Directory: `/var/fuse-workshop/{user-username}`
+//
+// Also, remember to configure the component to *delete the files* after being consumed.
+//
+// The sample for the camel directory would be:
+//
+// [source,java,subs="attributes"]
+// ----
+// from("file:/tmp/fuse-workshop/camel?delete=true")
+//     .log("Uploading camel orders to ftp")
+//     .to("ftp://{user-username}@##ftp-host##?password=##ftp-password##");
+// ----
+//
+// Do the same with the files on the camel directory.
+//
+// Run the integration.
+//
+// image::./images/lab02-filezilla-files.png[]
+//
+// [type=verification]
+// Do you see the files uploaded to FTP server? Were they also removed from the filesystem?
+//
+// *Just as an additional note*
+//
+// If you would like to consume files from FTP and work with them as Java Objects, you would use the `unmarshal()` method instead of `marshal()`. See an example:
+//
+// [source,java]
+// ----
+//     .log("reading files from ftp")
+//     .unmarshal().jacksonxml(Order.class) // Transform the file to Java Object
+// ----
+//
+// [time=2]
+// === Boilerplate code
+//
+// To make this lab work, the following dependencies were added to the project (in `pom.xml`):
+//
+//     <!-- PARSER -->
+//     <dependency>
+//         <groupId>org.apache.camel</groupId>
+//         <artifactId>camel-jackson-starter</artifactId>
+//     </dependency>
+//     <dependency>
+//         <groupId>org.apache.camel</groupId>
+//         <artifactId>camel-xstream</artifactId>
+//     </dependency>
+//     <!-- FTP -->
+//     <dependency>
+//         <groupId>org.apache.camel</groupId>
+//         <artifactId>camel-ftp</artifactId>
+//     </dependency>
 
 [time=1]
 == Summary
