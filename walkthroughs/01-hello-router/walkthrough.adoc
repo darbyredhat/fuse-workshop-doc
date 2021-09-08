@@ -80,6 +80,8 @@ If you are doing it locally, you can run as a standard spring-boot application.
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
 
+{empty} +
+
 Think of Camel as a pipeline that transports things *from* someplace to *another one*, and this message body flows through the pipes.
 
 Camel’s syntax is inspired by the UNIX pipeline. In UNIX, we might execute something like `ps -fe | grep foo`. When we run this command, the output of the `ps` command becomes the input to the `grep` command. We “pipe” the output of one command into the input of another command.
