@@ -12,11 +12,11 @@ https://docs.google.com/presentation/d/1EtypdwfEHpc2X1emJXIZDKKZPwWVIn5TzcCaElY0
 
 === Remote Environment (CodeReady Workspaces)
 
-If you use CodeReady Workspaces, you just need a updated browser :) 
-All the labs were tested only with Chrome, feel free to use any other 
-and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-doc/issues[fill an issue].
+If you use CodeReady Workspaces, you just need a updated browser :)
+All the labs were tested only with Chrome, feel free to use any other
+and in case of any issue please https://github.com/GuilhermeCamposo/fuse-workshop-doc/issues[fill an issue].
 
-== Local environment 
+== Local environment
 
 . At least 4 GB RAM
 . JDK 1.8+
@@ -52,7 +52,7 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 | Lunch
 
 | 14:00-16:30
-| **Lab:** 
+| **Lab:**
 
     * Messaging
 
@@ -66,24 +66,23 @@ and in case of any issue please https://github.com/hodrigohamalho/fuse-workshop-
 
 Usualy by 15:00 all the participants should be already finished all the labs.
 
-== Lab structure 
+== Lab structure
 
-All the labs uses the https://github.com/hodrigohamalho/fuse-workshop[Fuse-workshop project skeleton].
+All the labs uses the https://github.com/GuilhermeCamposo/fuse-workshop[Fuse-workshop project skeleton].
 
-So just to warm up your machine clone https://github.com/hodrigohamalho/fuse-workshop[the project] and do a `mvn package`.
+So just to warm up your machine clone https://github.com/GuilhermeCamposo/fuse-workshop[the project] and do a `mvn package`.
 
-== Setup in Integreatly Environment 
+== Setup in Integreatly Environment
 
 . Login as admin in your OpenShift cluster
 . Add this repository to your walkthrough catalog
 
-    oc patch webapp tutorial-web-app-operator --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#master,https://github.com/hodrigohamalho/fuse-springboot-workshop.git#master" }}}}' -n webapp
-    
-. Logged as admin user 
+    oc patch webapp tutorial-web-app-operator --type=merge -o yaml -p '{ "spec": { "template": { "parameters": { "WALKTHROUGH_LOCATIONS": "https://github.com/integr8ly/tutorial-web-app-walkthroughs.git#master,https://github.com/GuilhermeCamposo/fuse-workshop.git#master" }}}}' -n webapp
+
+. Logged as admin user
 
     support/setup.sh
 
 Now, you must see those walkthrough sessions in initial page.
 
 image::./images/walkthrough-catalog.png[Walkthough Catalog]
-

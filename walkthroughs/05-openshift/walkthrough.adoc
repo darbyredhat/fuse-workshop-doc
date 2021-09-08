@@ -254,7 +254,7 @@ image::./images/lab05-s2i-2.png[]
 . Input `workshop` as the Application Name and *click on advanced options.*
 +
 image::./images/lab05-s2i-3.png[]
-. On the field *Git Repository URL* input `https://github.com/hodrigohamalho/fuse-workshop.git`
+. On the field *Git Repository URL* input `https://github.com/GuilhermeCamposo/fuse-workshop.git`
 . On the field *Git Reference*, input *labs-complete*.
 +
 image::./images/lab05-s2i-4.png[]
