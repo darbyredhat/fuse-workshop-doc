@@ -53,3 +53,9 @@
                         value: 'Fuse Workshop'
                       - name: LAB_MODULE_URLS
                         value: 'https://{{ webapp_secure_route }};Solution Explorer'
+
+    - name: Change Che Namespaces
+      include_tasks: tasks/config_che.yml
+      vars:
+        route_subdomain: 'apps.{{ domain }}'
+        workshop_che_user_password: openshift

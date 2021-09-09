@@ -1,0 +1,7 @@
+---
+
+- name: Config Workspaces
+  include_tasks: single_che.yml
+  with_sequence: start=1 end={{ num_users }}
+  when:
+    - num_users|int > 0

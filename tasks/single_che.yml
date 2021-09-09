@@ -1,0 +1,72 @@
+---
+- name: "Get Che user token"
+  uri:
+    url: https://keycloak-codeready.{{ route_subdomain }}/auth/realms/codeready/protocol/openid-connect/token
+    validate_certs: false
+    method: POST
+    body:
+      username: "user{{ item }}"
+      password: "{{ workshop_che_user_password }}"
+      grant_type: "password"
+      client_id: "admin-cli"
+    body_format: form-urlencoded
+    status_code: 200
+  register: user_token
+
+- name: "Get Che user namespace"
+  uri:
+    url: https://codeready-codeready.{{ route_subdomain }}/api/workspace/namespace/user{{ item }}
+    validate_certs: false
+    method: GET
+    headers:
+      Content-Type: application/json
+      Authorization: "Bearer {{ user_token.json.access_token }}"
+    body_format: json
+    status_code: 200
+  register: namespaces
+
+
+- name: set workspace id fact
+  set_fact:
+    workspace_id: "{{ namespaces.json[0].id }}"
+
+# Have to stop the workspace
+
+- name: "Stop Che user old workspace"
+  uri:
+    url: https://codeready-codeready.{{ route_subdomain }}/api/workspace/{{ workspace_id }}/runtime
+    validate_certs: false
+    method: DELETE
+    headers:
+      Content-Type: application/json
+      Authorization: "Bearer {{ user_token.json.access_token }}"
+    body_format: json
+    status_code: 204
+  register: namespaces
+
+- name: "Delete Che user old workspace"
+  uri:
+    url: https://codeready-codeready.{{ route_subdomain }}/api/workspace/{{ workspace_id }}
+    validate_certs: false
+    method: DELETE
+    headers:
+      Content-Type: application/json
+      Authorization: "Bearer {{ user_token.json.access_token }}"
+    body_format: json
+    status_code: 204
+  retries: "10"
+  delay: "10"
+  register: namespaces
+
+- name: Create workspace for user from devfile
+  uri:
+    url: "https://codeready-codeready.{{ route_subdomain }}/api/workspace/devfile?start-after-create=true&namespace=user{{ item }}"
+    validate_certs: false
+    method: POST
+    headers:
+      Content-Type: application/json
+      Authorization: "Bearer {{ user_token.json.access_token }}"
+    body: "{{ lookup('template', './templates/devfile.json.j2') }}"
+    body_format: json
+    status_code: 201,409
+  register: workspace_def
