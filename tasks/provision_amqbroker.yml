@@ -1,0 +1,8 @@
+---
+
+
+- name: Subscribe Operator
+  include_tasks: single_amq.yml
+  with_sequence: start=1 end={{ num_users }}
+  when:
+    - num_users|int > 0

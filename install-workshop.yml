@@ -1,0 +1,55 @@
+- hosts: localhost
+  name: Install Fuse Workshop
+  vars:
+    insecure_skip_tls_verify: true
+    ocp_username: opentlc-mgr
+    # provision_webapp
+    webapp_operator_release_tag: '0.0.63'
+    webapp_client_id: tutorial-web-app
+    fuse_workshop_webapp_group_name: dedicated-admins
+    fuse_workshop_webapp_operator_image: quay.io/redhatintegration/tutorial-web-app-operator:v0.0.63-workshop
+    webapp_operator_template_path: /home/tutorial-web-app-operator/deploy/template/tutorial-web-app.yml
+    webapp_namespace: "webapp"
+    webapp_operator_resources: 'https://github.com/integr8ly/tutorial-web-app-operator/archive/v{{webapp_operator_release_tag}}.zip'
+    webapp_operator_resource_items:
+      - rbac.yaml
+      - sa.yaml
+      - crd.yaml
+    webapp_walkthrough_locations:
+      - 'https://github.com/GuilhermeCamposo/fuse-workshop-doc'
+  tasks:
+    - name: login as super user with token on OpenShift 4
+      command: "oc login --token={{ ocp_token }}  --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}"
+      when:
+       - ocp_token is defined
+       - ocp_token is not none
+       - ocp_token|trim() != ""
+      ignore_errors: no
+
+    - name: Provision Solution Explorer
+      include_tasks: tasks/provision_webapp.yml
+      vars:
+        configmap_name: "extra-services"
+        snapshot_operator_project: "openshift-marketplace"
+
+    - name: Provision AMQ Broker Operator
+      include_tasks: tasks/provision_amqbroker.yml
+
+    - name: Patch get-username
+      k8s:
+        definition:
+          apiVersion: apps.openshift.io/v1
+          kind: DeploymentConfig
+          metadata:
+            name: get-a-username
+            namespace: guides
+          spec:
+            template:
+              spec:
+                containers:
+                  - name: get-a-username
+                    env:
+                      - name: LAB_TITLE
+                        value: 'Fuse Workshop'
+                      - name: LAB_MODULE_URLS
+                        value: 'https://{{ webapp_secure_route }};Solution Explorer'

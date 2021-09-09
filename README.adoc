@@ -83,3 +83,8 @@ So just to warm up your machine clone https://github.com/GuilhermeCamposo/fuse-w
 Now, you must see those walkthrough sessions in initial page.
 
 image::./images/walkthrough-catalog.png[Walkthough Catalog]
+
+
+== Install Lab by Using Ansible
+
+    ansible-playbook -e ocp_token= -e domain=  -e num_users=  install-workshop.yml
