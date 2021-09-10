@@ -3,7 +3,6 @@
 :openshift-url: {openshift-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
 :user-password: openshift
-endif::[]
 
 = Lab 0 - Workshop Introduction
 

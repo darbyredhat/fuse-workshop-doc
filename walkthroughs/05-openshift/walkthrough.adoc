@@ -1,6 +1,6 @@
 :walkthrough: Publish to Openshift
-:codeready-url: https://codeready-codeready.{openshift-host}
-:openshift-url: https://console-openshift-console.{openshift-host}
+:codeready-url: {che-url}
+:openshift-url: {openshift-host}
 :user-password: openshift
 
 = Lab 5 - Publish to OpenShift

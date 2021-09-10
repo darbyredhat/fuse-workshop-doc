@@ -1,7 +1,7 @@
 :walkthrough: Integration with Files
-:codeready-url: https://codeready-codeready.{openshift-host}
-:openshift-url: https://console-openshift-console.{openshift-host}
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-host}/tutorial/fuse-workshop-doc-walkthroughs-03-rest-database/
+:codeready-url: {che-url}
+:openshift-url: {openshift-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc-walkthroughs-03-rest-database/
 
 = Lab 2 - Integration with Files
 
