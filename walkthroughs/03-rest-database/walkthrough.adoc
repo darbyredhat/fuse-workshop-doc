@@ -1,7 +1,7 @@
 :walkthrough: REST and Database
 :codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}/console
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}tutorial/fuse-workshop-doc.git-walkthroughs-04-messaging/
+:openshift-url: {openshift-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}tutorial/fuse-workshop-doc-walkthroughs-04-messaging/
 
 = Lab 3 - REST and Database
 
@@ -245,7 +245,7 @@ We will continue working with the same REST resources but adding database intera
 
 There are three strings (*selectAll*, *selectById*, *insertOrder*) already defined in the `RestRouter` class to retrieve/create information from a database that we will use on the REST DSL to interact with database.
 
-Before starting, include the databases libs necessary in the `pom.xml` file. 
+Before starting, include the databases libs necessary in the `pom.xml` file.
 You can do it uncommenting the `database session`. In this lab you will be using an embedded database, so don't worry about any installation process.
 
 image::./images/database-session-pom.png[]

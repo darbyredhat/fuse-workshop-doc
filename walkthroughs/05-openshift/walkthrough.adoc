@@ -1,6 +1,6 @@
 :walkthrough: Publish to Openshift
 :codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}/console
+:openshift-url: {openshift-host}
 :user-password: openshift
 
 = Lab 5 - Publish to OpenShift
@@ -60,7 +60,7 @@ Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Pa
 
 image::./images/05.png[]
 
-== AMQ provisioning 
+== AMQ provisioning
 
 Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
 Select *Operator Backed* option.
