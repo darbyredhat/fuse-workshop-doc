@@ -47,11 +47,11 @@ from("timer:generate")
   .log("Hello router!");
 ----
 
-This code is using the timer component, with all default configurations, it will be executed in a forever the message *Hello router!"* in the console in a specific frequency.
+This code is using the timer component, with all default configurations, it will be executed every second (default value), printing the message *Hello router!"* in the console.
 
 Components are the key of Camel. They are flexible and reusable  "libraries" that abstract complex operations making it trivial, boosting developer productivity!
 
-https://camel.apache.org/components/latest[Take a look at the camel components, window="_blank"]
+https://camel.apache.org/components/latest[Take a look at the Camel's components list, window="_blank"]
 
 Now, let's use some parameters with timer component to repeat *only 5 times* within the *interval of 1 sec*.
 
@@ -99,7 +99,7 @@ Take some time and take a look at https://access.redhat.com/documentation/en-us/
 
 Now, take a look in the class `OrderService.java`, it generates an `Order.java` object, alternating some values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using the *bean* method.
+Let's call this method to get a new Order using the *bean* method. Copy the following code and paste it over the route.
 
 [source,java]
 ----
@@ -109,7 +109,7 @@ from("timer:generate?repeatCount=5&period=1000")
     .log("Order ${body.item} generated");
 ----
 
-Now, it is using the `OrderService` class to generate a new `Order`, print some information in the console.
+Now, it is using the `OrderService` class to generate a new `Order` and print some information in the console. Run the code again.
 
 image:./images/output-logs.png[]
 
@@ -127,4 +127,4 @@ Congratulations you finished the Hello World Camel lab!
 
 In this lab you learned about Camel pipelines and how they work. You also learned how to interact with Java Beans directly from the Camel DSL.
 
-You can now proceed to link:{next-lab-url}[Working with Files and FTP].
+You can now proceed to link:{next-lab-url}[Working with Files].

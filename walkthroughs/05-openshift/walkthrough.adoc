@@ -37,7 +37,7 @@ For this lab we will use the binary deployment option (#2 above), uploading the 
 
 First, to work with the MySQL database in production, we have to deploy/provision it.
 
-. Go to the link:{openshift-host}/console[OpenShift Console, window="_blank"]
+. Go to the link:{openshift-host}[OpenShift Console, window="_blank"]
 . Click on *Add*  on the left menu. And click on *Select from Catalog*, then look for *mysql* & select the *MySQL (Ephemeral)* option
 
 image::./images/01.png[]
@@ -82,7 +82,7 @@ kind: ActiveMQArtemis
 metadata:
   name: amq-broker
   application: amq-broker
-  namespace: user1
+  namespace: '{user-username}-project'
 spec:
   deploymentPlan:
     size: 1
@@ -140,6 +140,8 @@ image::./images/18.png[]
 
 {empty} +
 
+As you can see the queue we need is not created. Follow theses steps to do so:
+
 image::./images/19.png[]
 
 {empty} +
@@ -147,6 +149,8 @@ image::./images/19.png[]
 image::./images/20.png[]
 
 {empty} +
+
+Now you will be able to visualize the queue using the web console.
 
 image::./images/21.png[]
 

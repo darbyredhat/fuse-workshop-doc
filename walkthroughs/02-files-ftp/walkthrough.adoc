@@ -7,14 +7,14 @@
 
 Explore the basic concepts of Camel, with a use case with FILE  doing some basic transformations with POJO, XML and JSON.
 
-image::./images/lab02-process-diagram.png[]
+image::./images/lab02-content-base-router.png[]
 
 Contents covered during this lab
 
 * Content-Based Router pattern
 * XML and JSON transformation
 * File component
-* FTP component
+// * FTP component
 * Processor
 
 [type=walkthroughResource,serviceName=codeready]
@@ -178,8 +178,8 @@ image::./images/lab02-content-base-router.png[]
 
 To work with Data Format, we have two methods: *marshall()* and *unmarshal()*.
 
-* *marshall()* we use to convert a Java Bean in other datatype as XML, JSON, CSV, etc
-* *unmarshal()* we use to the opposite when we have a datatype as XML, JSON, CSV, etc, and would like to transform into a Java Bean
+* *marshall()* we use to convert a Java Beans in other datatype as XML, JSON, CSV, etc
+* *unmarshal()* we use when we have a datatype as XML, JSON, CSV, etc, and would like to transform into a Java Beans
 
 Let's remove the transformation of the body to `String` and do a proper transformation.
 
@@ -201,7 +201,7 @@ from("direct:book-to-file")
 
 Run the integration
 
-image::./images/lab02-file-pretty-names-2.png[]
+image::./images/lab02-content-base-router.png[]
 
 [type=verification]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?
@@ -209,7 +209,7 @@ Do you see the files with the correct extensions? Is the content of each file wh
 [time=10]
 === Processor and Transformation
 
-Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for ActiveMQ books prior to doing the upload to the FTP server.
+Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for ActiveMQ books.
 
 image::./images/lab02-process-diagram.png[]
 
@@ -321,14 +321,14 @@ Do you see the last XML files generated with the process attribute is true?
 [time=1]
 == Summary
 
-Congratulations you finished the File and FTP lab!
+Congratulations you finished the File lab!
 
 We covered a lot of things during this lab. Here's a quick recap:
 
 * Content-Based Router pattern
 * XML and JSON transformation
 * File component
-* FTP component
+// * FTP component
 * Processor (To add some custom logic to your route)
 
 You can now proceed to link:{next-lab-url}[REST and Database].

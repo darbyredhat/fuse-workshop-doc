@@ -1,7 +1,7 @@
 :walkthrough: REST and Database
 :codeready-url: {che-url}
 :openshift-url: {openshift-host}
-:next-lab-url: ../../..tutorial/fuse-workshop-doc-walkthroughs-04-messaging/
+:next-lab-url: ../../../tutorial/fuse-workshop-doc-walkthroughs-04-messaging/
 
 = Lab 3 - REST and Database
 
@@ -17,6 +17,8 @@ We are going to work on 3 REST JSON endpoints:
 ** Retrieve a specific order by id
 * `POST /orders`
 ** CREATE a order in an async way
+
+{empty} +
 
 Patterns/components covered during this lab
 
@@ -116,9 +118,7 @@ rest("/orders")
 
 image::./images/lab03-rest-definition.png[]
 
-Access the the URL again, this time without the `/camel/orders` URI.
-
-image::./images/web-page.png[]s
+Run the application again. This time let's check the swagger definition.
 
 {empty} +
 
