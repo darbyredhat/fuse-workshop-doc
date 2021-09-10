@@ -1,7 +1,7 @@
 :walkthrough: Setup Codeready workspaces with Fuse
-:codeready-url: http://codeready-codeready.{openshift-app-host}/
-:openshift-url: {openshift-host}
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
+:codeready-url: http://codeready-codeready.{openshift-host}/
+:openshift-url: https://console-openshift-console.{openshift-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-host}/tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
 :user-password: openshift
 endif::[]
 

@@ -1,6 +1,6 @@
 :walkthrough: Publish to Openshift
-:codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}
+:codeready-url: https://codeready-codeready.{openshift-host}
+:openshift-url: https://console-openshift-console.{openshift-host}
 :user-password: openshift
 
 = Lab 5 - Publish to OpenShift
@@ -210,7 +210,7 @@ image::./images/lab05-fuse-console-new-04.png[]
 
 [source,bash,subs="attributes+"]
 ----
-while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-app-host}/camel/orders; sleep 1; done
+while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-host}/camel/orders; sleep 1; done
 ----
 
 . It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.

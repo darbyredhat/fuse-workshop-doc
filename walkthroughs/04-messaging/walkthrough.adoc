@@ -1,8 +1,8 @@
 :walkthrough: Messaging
-:codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}
+:codeready-url: https://codeready-codeready.{openshift-host}
+:openshift-url: https://console-openshift-console.{openshift-host}
 :user-password: openshift
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}/tutorial/fuse-workshop-doc-walkthroughs-05-openshift/
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-host}/tutorial/fuse-workshop-doc-walkthroughs-05-openshift/
 
 = Lab 4 - Messaging
 

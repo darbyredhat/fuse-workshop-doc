@@ -1,7 +1,7 @@
 :walkthrough: REST and Database
-:codeready-url: https://codeready-codeready.{openshift-app-host}
-:openshift-url: {openshift-host}
-:next-lab-url: https://tutorial-web-app-webapp.{openshift-app-host}tutorial/fuse-workshop-doc-walkthroughs-04-messaging/
+:codeready-url: https://codeready-codeready.{openshift-host}
+:openshift-url: https://console-openshift-console.{openshift-host}
+:next-lab-url: https://tutorial-web-app-webapp.{openshift-host}tutorial/fuse-workshop-doc-walkthroughs-04-messaging/
 
 = Lab 3 - REST and Database
 
