@@ -1,5 +1,5 @@
 :walkthrough: Setup Codeready workspaces with Fuse
-:codeready-url: {openshift-host}
+:codeready-url: {code-ready}
 :openshift-url: https://console-openshift-console.{openshift-host}
 :next-lab-url: https://tutorial-web-app-webapp.{openshift-host}/tutorial/fuse-workshop-doc-walkthroughs-01-hello-router/
 :user-password: openshift
@@ -20,7 +20,7 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
 ****
-* link:http://codeready-codeready.{codeready-url}[Console, window="_blank"]
+* link:{codeready-url}[Console, window="_blank"]
 * link:https://developers.redhat.com/products/codeready-workspaces/overview/[Want to know more about CodeReady Workspaces?, window="_blank"]
 ****
 
