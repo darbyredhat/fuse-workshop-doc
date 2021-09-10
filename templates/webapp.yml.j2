@@ -12,7 +12,7 @@ spec:
     parameters:
       OPENSHIFT_OAUTHCLIENT_ID: "{{ webapp_client_id }}"
       OPENSHIFT_OAUTH_HOST: "oauth-openshift.{{ openshift_host }}"
-      OPENSHIFT_HOST: "{{ openshift_host }}"
+      OPENSHIFT_HOST: "console-openshift-console.{{ openshift_host }}"
       INSTALLED_SERVICES: |-
         {
           "codeready":{
