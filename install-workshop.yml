@@ -35,6 +35,9 @@
     - name: Provision AMQ Broker Operator
       include_tasks: tasks/provision_amqbroker.yml
 
+    - name: Provision Fuse Console Operator
+      include_tasks: tasks/provision_fuseconsole.yml
+
     - name: Patch get-username
       k8s:
         definition:

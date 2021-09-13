@@ -1,7 +1,7 @@
 apiVersion: operators.coreos.com/v1
 kind: OperatorGroup
 metadata:
-  name: amq-operatorgroup
+  name: {{ user_amq_project }}-operatorgroup
   namespace: {{ user_amq_project }}
 spec:
   targetNamespaces:

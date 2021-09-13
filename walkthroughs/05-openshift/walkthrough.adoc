@@ -213,8 +213,11 @@ Once the deployment is done, you may access the console's `Route`.
 
 image::./images/lab05-console-03.png[]
 
+
 . You will be prompted to log in with username `{user-username}` & password `{user-password}`
 . You will be asked to authorize the access. Allow it by clicking `Allow select permissions`.
+
+
 
 image::./images/lab05-console-04.png[]
 
@@ -235,7 +238,8 @@ Select `Routes` on the side menu and look for the statistics changing. If you wo
 
 [source,bash]
 ----
-ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project) \
+ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project)
+
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
 
