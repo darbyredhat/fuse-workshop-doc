@@ -171,7 +171,7 @@ image::./images/lab05-after-login.png[]
 Now that you are logged in, on the right panel, execute the `deploy to openshift` command. This command you build the project locally and push it to OpenShift, where a container image will be created.
 
 image::./images/lab05-deploy-ocp.png[]
-
++
 The `fabric8:deploy` maven goal uses the oc client authentication under the hood. It also uses a binary deployment, meaning it builds your application binary locally and sends that to OpenShift to "wrap" in a container image & deploy.
 
 After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
@@ -212,14 +212,18 @@ image::./images/lab05-fuse-console-new-04.png[]
 [type=verification]
 Are you able to connect to the application?
 
-. Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
++
 
+Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
++
 [source,bash,subs="attributes+"]
 ----
-while(true); do curl http://fuse-workshop-{user-username}-fuse.{openshift-host}/camel/orders; sleep 1; done
+ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}'   -n {user-username}-project)
+while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
++
 
-. It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
+It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
 +
 image::./images/lab05-fuse-console-new-05.png[]
 
