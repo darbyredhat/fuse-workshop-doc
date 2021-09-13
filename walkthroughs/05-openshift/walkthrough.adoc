@@ -82,7 +82,7 @@ kind: ActiveMQArtemis
 metadata:
   name: amq-broker
   application: amq-broker
-  namespace: '{user-username}-project'
+  namespace: {user-username}-project
 spec:
   deploymentPlan:
     size: 1
@@ -120,6 +120,11 @@ image::./images/13.png[]
 
 {empty} +
 
+Credentials:
+
+* Username: `redhat`
+* Password: `redhat`
+
 image::./images/14.png[]
 
 {empty} +
@@ -132,6 +137,8 @@ image::./images/16.png[]
 
 {empty} +
 
+As you can see the Address we need is not created. Follow theses steps to create it:
+
 image::./images/17.png[]
 
 {empty} +
@@ -140,11 +147,7 @@ image::./images/18.png[]
 
 {empty} +
 
-As you can see the queue we need is not created. Follow theses steps to do so:
-
-image::./images/19.png[]
-
-{empty} +
+Set the *Queue Name* and *Address Name* as `orders`. Leave the *Routing Type* as anycast.
 
 image::./images/20.png[]
 
@@ -157,28 +160,15 @@ image::./images/21.png[]
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment
 
-Let's setup the `oc` plugin
+Before using the `fabric8` maven plugin, first we need to login to OpenShift. On the right side panel, execute the `login to openshift` command.
 
-[source,bash]
-----
-./oc-setup.sh
-----
+image::./images/lab05-login-command.png[]
 
-Login into OpenShift (if you aren't already):
+Once the login process is done, you should see a similar message.
 
-[source,bash,subs="attributes+"]
-----
-oc login -u {user-username} -p {user-password} https://$KUBERNETES_SERVICE_HOST:$KUBERNETES_SERVICE_PORT --insecure-skip-tls-verify=true
-----
+image::./images/lab05-after-login.png[]
 
-Enter in your project
-
-[source,bash,subs="attributes+"]
-----
-oc project {user-username}
-----
-
-Once logged in, right click on the `fuse-workshop` project & choose *Commands -> Deploy (1) -> Deploy to Openshift*. It may take a few minutes depending on your network performance.
+Now that you are logged in, on the right panel, execute the `deploy to openshift` command. This command you build the project locally and push it to OpenShift, where a container image will be created.
 
 image::./images/lab05-deploy-ocp.png[]
 
@@ -191,25 +181,37 @@ After the deployment completes you will see that the application is using both t
 [time=10]
 == Fuse Java Console
 
-Fuse has a web console that enables us to see some data flowing trough the routes, threads, messaging and also to do some debugging. The console is based on the open-source project Hawtio, and explore all the JMX exposed metrics
+Fuse has a web console that enables us to see some data flowing trough the routes, threads, messaging and also to do some debugging. The console is based on the open-source project `Hawtio`, and explore all the JMX exposed metrics
 of Red Hat Fuse.
 
-. In the *Search Catalog* box at the top, search for *fuse console* & select the *Red Hat Fuse 7.4 Console* (*NOT* the one that has the *(cluster)* appendix) option
-+
-image::./images/lab05-fuse-console-new-02.png[]
-. Select all the defaults, clicking *Next* through all the sections & finally clicking *Create*
-. Wait for provisioning to finish
-. When provisioning has finished, you should see (the URL will be different for you)
-+
-image::./images/lab05-fuse-console-new-01.png[]
-. Click the link. This will open up the fuse console.
-. If prompted, log in with username `{user-username}` & password `{user-password}`
+In the OpenShift console right panel, click on *+Add -> Operator Backed*, then select Hawtio.
+
+image::./images/lab05-console-01.png[]
+
+Click in the `Create` button. You won't need to change anything in the form. Just click `Create` again.
+
+image::./images/lab05-console-02.png[]
+
+Once the deployment is done, you may access the console's `Route`.
+
+image::./images/lab05-console-03.png[]
+
+. You will be prompted to log in with username `{user-username}` & password `{user-password}`
+. You will be asked to authorize the access. Allow it by clicking `Allow select permissions`.
+
+image::./images/lab05-console-04.png[]
+
 . Once logged in you will see the homepage. You should also see your application registered
 +
 image::./images/lab05-fuse-console-new-03.png[]
 . Click the *Connect* button to connect the console to your running application
-+
+
 image::./images/lab05-fuse-console-new-04.png[]
+
+[time=5]
+[type=verification]
+Are you able to connect to the application?
+
 . Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
 [source,bash,subs="attributes+"]
