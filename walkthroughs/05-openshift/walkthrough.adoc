@@ -60,6 +60,10 @@ Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Pa
 
 image::./images/05.png[]
 
+[time=5]
+[type=verification]
+Were you able to deploy Mysql?
+
 == AMQ provisioning
 
 Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
@@ -118,7 +122,6 @@ image::./images/12.png[]
 
 image::./images/13.png[]
 
-{empty} +
 
 Credentials:
 
@@ -136,6 +139,10 @@ image::./images/15.png[]
 image::./images/16.png[]
 
 {empty} +
+
+[time=5]
+[type=verification]
+Were you able to deploy AMQ?
 
 As you can see the Address we need is not created. Follow theses steps to create it:
 
@@ -157,6 +164,10 @@ Now you will be able to visualize the queue using the web console.
 
 image::./images/21.png[]
 
+[time=5]
+[type=verification]
+Were you able to deploy the new Queue?
+
 [time=15]
 == Application deployment onto OpenShift using Binary Deployment
 
@@ -177,6 +188,10 @@ The `fabric8:deploy` maven goal uses the oc client authentication under the hood
 After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
 
 After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
+
+[time=5]
+[type=verification]
+Were you able to deploy the Application?
 
 [time=10]
 == Fuse Java Console
@@ -201,10 +216,11 @@ image::./images/lab05-console-03.png[]
 
 image::./images/lab05-console-04.png[]
 
-. Once logged in you will see the homepage. You should also see your application registered
-+
+Once logged in you will see the homepage. You should also see your application registered
+
 image::./images/lab05-fuse-console-new-03.png[]
-. Click the *Connect* button to connect the console to your running application
+
+Click the *Connect* button to connect the console to your running application
 
 image::./images/lab05-fuse-console-new-04.png[]
 
@@ -212,19 +228,18 @@ image::./images/lab05-fuse-console-new-04.png[]
 [type=verification]
 Are you able to connect to the application?
 
-+
 
 Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
-+
+
 [source,bash,subs="attributes+"]
 ----
-ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}'   -n {user-username}-project)
+ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}'   -n {user-username}-project) \
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
-+
+
 
 It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
-+
+
 image::./images/lab05-fuse-console-new-05.png[]
 
 . Now, click on *Route Diagram*. You will see the route in a more human-readable way, and the count of requests flowing through the routes.
