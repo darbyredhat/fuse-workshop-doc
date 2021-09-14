@@ -60,10 +60,10 @@ Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Pa
 
 image::./images/05.png[]
 
-[time=5]
 [type=verification]
 Were you able to deploy Mysql?
 
+[time=5]
 == AMQ provisioning
 
 Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
@@ -104,6 +104,8 @@ spec:
     expose: true
 ----
 
+{empty} +
+
 image::./images/09.png[]
 
 If everything worked fine, you should see a screen like that:
@@ -140,7 +142,6 @@ image::./images/16.png[]
 
 {empty} +
 
-[time=5]
 [type=verification]
 Were you able to deploy AMQ?
 
@@ -164,7 +165,7 @@ Now you will be able to visualize the queue using the web console.
 
 image::./images/21.png[]
 
-[time=5]
+
 [type=verification]
 Were you able to deploy the new Queue?
 
@@ -191,7 +192,7 @@ After `fabric8:deploy`, take a look in the target folder inside the project. Mor
 
 After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
 
-[time=5]
+
 [type=verification]
 Were you able to deploy the Application?
 
@@ -229,7 +230,7 @@ Click the *Connect* button to connect the console to your running application
 
 image::./images/lab05-fuse-console-new-04.png[]
 
-[time=5]
+
 [type=verification]
 Are you able to connect to the application?
 
@@ -270,28 +271,26 @@ image::./images/lab05-fuse-console-new-09.png[]
 
 Make another request to get all the orders. You should see a window appear with all the header & body information of the message within the exchange. Now, let's close the debug by clicking *Stop debugging* in the upper-right corner. Otherwise, it will stay stuck until a timeout in every request.
 
+[time=5]
 == Application deployment on OpenShift using S2I
 
 Binary deployment is effective when you are doing a lot of changes and do not like to commit to see the results. A very common practice is to deploy the application automatically on each commit. Also s2i is more often used inside CICD pipelines.
 
 Let's deploy the same application but using the S2I strategy.
 
-. In the *Search Catalog* box at the top, search for *jdk* and select *Red Hat OpenJDK 8* in the results.
+. In the *Developer View*, click *+ADD*, then select *From Git*.
 +
-image::./images/lab05-s2i-1.png[]
-. On the following screen just select *next*.
+image::./images/lab05-s2i-01.png[]
+. Add the repository `https://github.com/GuilhermeCamposo/fuse-workshop.git` and `labs-complete` as the branch reference.
 +
-image::./images/lab05-s2i-2.png[]
-. Input `workshop` as the Application Name and *click on advanced options.*
+image::./images/lab05-s2i-02.png[]
+. The interface will identify the correct language used by the project. Now set `openjdk-8-ubi8` as the Builder image and `workshop` as the *Application Name* and *Name*. Then click create.
 +
-image::./images/lab05-s2i-3.png[]
-. On the field *Git Repository URL* input `https://github.com/GuilhermeCamposo/fuse-workshop.git`
-. On the field *Git Reference*, input *labs-complete*.
+image::./images/lab05-s2i-03.png[]
+. On the build and deploy are done, you will be able to see the container and in the following image. You may try it by click in the Route button.
 +
-image::./images/lab05-s2i-4.png[]
-. Leave all the other defaults & click *Create* at the bottom of the screen
-. Wait for the build and deployment to complete
-.. This will instruct OpenShift to pull the `labs-complete` branch, build it, create a container image, & deploy that image to OpenShift
-... When everything is complete you should be able to see it running in the link:{openshift-url}[OpenShift Console, window="_blank"].
-+
-image::./images/lab05-s2i-5.png[]
+image::./images/lab05-s2i-04.png[]
+
+
+[type=verification]
+Were you able to deploy the application?
