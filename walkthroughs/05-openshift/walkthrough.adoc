@@ -11,7 +11,8 @@ There are several ways to deploy an application into OpenShift
 . From the local machine using binary deployment
 . From a Docker image
 
-For this lab we will use the binary deployment option (#2 above), uploading the code directly from our machine to OpenShift. For it to work, we will need the `oc` client working in our local machine.
+For this lab we will use the binary deployment option (#2 above), uploading the code directly from the workspace to OpenShift. For it to work, we will need the `oc` client working in our local machine.
+In the last section you will see how to use S2I to deploy applications.
 
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
@@ -37,16 +38,20 @@ For this lab we will use the binary deployment option (#2 above), uploading the 
 
 First, to work with the MySQL database in production, we have to deploy/provision it.
 
-. Go to the link:{openshift-host}[OpenShift Console, window="_blank"]
-. Click on *Add*  on the left menu. And click on *Select from Catalog*, then look for *mysql* & select the *MySQL (Ephemeral)* option
+Go to the link:{openshift-host}[OpenShift Console, window="_blank"].
+Click on *Add*  on the left menu.
 
 image::./images/01.png[]
 
 {empty} +
 
+Click on *From Catalog*
+
 image::./images/02.png[]
 
 {empty} +
+
+Then look for *mysql* & select the *MySQL (Ephemeral)* option
 
 image::./images/03.png[]
 
@@ -54,7 +59,7 @@ image::./images/03.png[]
 
 image::./images/04.png[]
 
-Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Password* as *redhat* and click *Next*, followed by *Create* on the binding screen
+Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Password* as *redhat* and then click *Create*.
 
 {empty} +
 
@@ -106,6 +111,8 @@ spec:
 
 {empty} +
 
+Replace `{user-username}` with your user name, then click *Create*.
+
 image::./images/09.png[]
 
 If everything worked fine, you should see a screen like that:
@@ -118,14 +125,17 @@ image::./images/11.png[]
 
 {empty} +
 
+Click in the Route link.
+
 image::./images/12.png[]
 
 {empty} +
+Click on *Management Console*.
 
 image::./images/13.png[]
 
 
-Credentials:
+Enter the following credentials:
 
 * Username: `redhat`
 * Password: `redhat`
@@ -170,7 +180,7 @@ image::./images/21.png[]
 Were you able to deploy the new Queue?
 
 [time=15]
-== Application deployment onto OpenShift using Binary Deployment
+== Application deployment to OpenShift using Binary Deployment
 
 Before using the `fabric8` maven plugin, first we need to login to OpenShift. On the right side panel, execute the `login to openshift` command.
 

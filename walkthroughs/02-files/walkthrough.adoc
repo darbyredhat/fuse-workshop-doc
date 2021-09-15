@@ -36,17 +36,16 @@ Content-Based Router (CBR) is a pattern from the link:https://www.enterpriseinte
 
 The code below is a CBR sample from the Enterprise Integration Pattern website.
 
-[source,java]
-----
-from("direct:in")
-    .choice()
-        .when(header("type").isEqualTo("widget"))
-            .to("direct:widget")
-        .when(header("type").isEqualTo("gadget"))
-            .to("direct:gadget")
-        .otherwise()
-            .to("direct:other")
-----
+
+    from("direct:in")
+        .choice()
+            .when(header("type").isEqualTo("widget"))
+                .to("direct:widget")
+            .when(header("type").isEqualTo("gadget"))
+                .to("direct:gadget")
+            .otherwise()
+                .to("direct:other")
+
 
 You will use similar code in this lab.
 
@@ -84,9 +83,11 @@ from("direct:book-to-file")
             .log("Processing an ActiveMQ book");
 ----
 
+The `configure()` method should look like this:
+
 image::./images/lab02-cbr-code.png[]
 
-We compare the *item* attribute of the object Order and print a message.
+We are comparing the *item* attribute of the object Order and print a message.
 
 Run the integration.
 
@@ -106,7 +107,7 @@ Adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/
 
 image::./images/lab02-filesystem.png[]
 
-See the code below:
+Copy and paste the code below:
 
 [source,java]
 ----
@@ -139,6 +140,13 @@ image::./images/lab02-file-code-02.png[]
 
 {empty} +
 
+Then you can run the following command to list the files:
+
+[source,bash]
+----
+ls /tmp/fuse-workshop/*
+----
+
 image::./images/lab02-file-code-03.png[]
 
 [type=verification]
@@ -150,14 +158,19 @@ Change the last line as the following:
 
 Camel:
 
-    .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
+[source,java]
+----
+.to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
+----
 
 ActiveMQ
 
-    .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+[source,java]
+----
+.to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
+----
 
 Run the integration
-
 
 image::./images/lab02-file-pretty-names.png[]
 
@@ -169,7 +182,7 @@ Do you see the files with the new patterns?
 
 https://camel.apache.org/data-format.html
 
-Now, let's take the example before and instead of storing everything in *.txt* format, let's transform the Java object in the Camel body (`Order.java`).
+Now, let's take the last example and instead of storing everything in *.txt* format, let's transform the Java object in the Camel body (`Order.java`).
 
 Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
@@ -206,13 +219,13 @@ image::./images/lab02-content-base-router.png[]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?
 
 [time=10]
-=== Processor and Transformation
+== Processor and Transformation
 
 Let's add some adrenaline to it! Let's change the `Order` attribute `processed` to `true` for ActiveMQ books.
 
-image::./images/lab02-process-diagram.png[]
+image::./images/lab02-content-base-router.png[]
 
-One way to do it is by using a `Processor`. With a `Processor`, you can have total control with the message and headers being sent through the Camel pipeline.
+One way to do it is by using a `Processor`. With a `Processor`, you can have total control of the message and headers being sent through the Camel pipeline.
 
 Let's create a process, capture `Order` object on the Camel body, and change the attribute `process` to *`true`*.
 
@@ -220,17 +233,15 @@ Open the `OrderProcessor.java` file, and implement the logic to change the attri
 
 [source,java]
 ----
-public void process(Exchange exchange) throws Exception {
-    Order order = exchange.getIn().getBody(Order.class);
-    order.setProcessed(true);
-    System.out.println("attributed process changed");
-    exchange.getOut().setBody(order);
-}
+order.setProcessed(true);
+System.out.println("attributed process changed");
 ----
+
+Like this:
 
 image::./images/lab02-processor.png[]
 
-And in the route, add the process before the first transformation of ActiveMQ books.
+In the route, add the process before the first transformation of ActiveMQ books.
 [source,java]
 ----
 from("direct:book-to-file")
@@ -245,6 +256,8 @@ from("direct:book-to-file")
             .marshal().jacksonxml()
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
+
+Here is how the route will look like:
 
 image::./images/lab02-processor2.png[]
 

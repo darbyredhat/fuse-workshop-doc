@@ -44,6 +44,8 @@ Open `RestRouter.java`. Inside the `configure()` method, declare our first REST 
 
 === Get all orders (GET)
 
+In the ,RestRouter.java` copy the following code and paste it over `// insert your rest code here`.
+
 [source,java]
 ----
 rest("/orders")
@@ -68,7 +70,7 @@ Do you see the message *"Getting all order entries from database"* in the logs e
 
 === Get order by ID (GET)
 
-Observe how we declare the path parameter ID on the URL on this new route.
+Observe how we declare the path parameter ID on the URL on this new route. Copy this code and paste it before the `;` in the route
 
 [source,java]
 ----
@@ -87,13 +89,10 @@ Do you see the message *"Getting order with id 1 entry from database"* in the lo
 
 Now we will implement the same path as before (`/`) but using the HTTP verb POST.
 
-[source,java]
-----
-.post("/").type(Order.class)
-    .route()
-    .log("Order ${body.description} received")
-    .endRest();
-----
+    .post("/").type(Order.class)
+        .route()
+        .log("Order ${body.description} received")
+        .endRest();
 
 The entire class should look like this:
 
@@ -116,9 +115,13 @@ rest("/orders")
         .endRest();
 ----
 
+Here is the class:
+
 image::./images/lab03-rest-definition.png[]
 
-Run the application again. This time let's check the swagger definition.
+Run the application again. This time let's check the swagger definition. You can access it by opening the preview page and clicking in the `API Swagger Page` button.
+
+In case you are doing it locally change the Schema to *HTTP*.
 
 {empty} +
 
@@ -126,8 +129,6 @@ image::./images/web-page-swaggerui.png[]
 
 {empty} +
 
-. Click on the *API Swagger page* button
-. In case you are doing it locally change the Schema to *HTTP*.
 . Expand the *POST /orders/* section
 . Click *Try it out*
 . In the body, paste in the following JSON & click *Execute*
@@ -160,7 +161,7 @@ image::./images/lab03-swagger.png[]
 
 {empty} +
 
-You could enrich the documentation adding some descriptions in your code, let's do it:
+You can enrich the documentation adding some descriptions in your code, let's do it:
 
 [source,java]
 ----
@@ -179,6 +180,8 @@ rest("/orders").description("Orders CRUD REST endpoint")
         .endRest();
 ----
 
+The Swaager page will look like this:
+
 image::./images/lab03-swagger-documented.png[]
 
 [type=verification]
@@ -189,48 +192,46 @@ Have you been able to access an interface from swagger ui? Do you see the update
 
 In `RestSetup.java` we use the `restConfiguration()` method to specify everything about the REST server and swagger doc:
 
-[source,java]
-----
-restConfiguration()
-    .apiContextPath("/api-doc")
-    .apiProperty("api.title", "Greeting REST API")
-    .apiProperty("api.version", "1.0")
-    .apiProperty("cors", "true")
-    .apiProperty("base.path", "camel/")
-    .apiProperty("api.path", "/")
-    .apiProperty("host", "")
-    .apiContextRouteId("doc-api")
-.component("servlet")
-.bindingMode(RestBindingMode.json);
-----
+
+      restConfiguration()
+          .apiContextPath("/api-doc")
+          .apiProperty("api.title", "Greeting REST API")
+          .apiProperty("api.version", "1.0")
+          .apiProperty("cors", "true")
+          .apiProperty("base.path", "camel/")
+          .apiProperty("api.path", "/")
+          .apiProperty("host", "")
+          .apiContextRouteId("doc-api")
+      .component("servlet")
+      .bindingMode(RestBindingMode.json);
+
 
 Also, some dependencies are needed in `pom.xml`:
 
-[source,xml]
-----
-<!-- Swagger UI -->
-<dependency>
-    <groupId>org.webjars</groupId>
-    <artifactId>swagger-ui</artifactId>
-    <version>3.13.0</version>
-</dependency>
-<!-- REST -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-web</artifactId>
-    <exclusions>
-        <exclusion>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-tomcat</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-<!-- WEB SERVER -->
-<dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-undertow</artifactId>
-</dependency>
-----
+
+    <!-- Swagger UI -->
+    <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>swagger-ui</artifactId>
+        <version>3.13.0</version>
+    </dependency>
+    <!-- REST -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-web</artifactId>
+        <exclusions>
+            <exclusion>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-tomcat</artifactId>
+            </exclusion>
+        </exclusions>
+    </dependency>
+    <!-- WEB SERVER -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-undertow</artifactId>
+    </dependency>
+
 
 [time=15]
 == Database
@@ -251,6 +252,8 @@ You can do it uncommenting the `database session`. In this lab you will be using
 image::./images/database-session-pom.png[]
 
 === GET all and by ID
+
+Replace the `get()` methods with the following code:
 
 [source,java]
 ----
@@ -283,6 +286,8 @@ Are you seeing the Orders from the database now?
 The file `src/main/resources/schema.sql` was created to populate the database during the startup. Open it and take a look.
 
 === Create a new Order (POST)
+
+Now replace the `post()` method with the following code:
 
 [source,java]
 ----

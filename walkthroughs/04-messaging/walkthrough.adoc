@@ -34,9 +34,9 @@ Contents covered during this lab
 [time=5]
 == Async router
 
-As we just done in the database session, let's start uncommenting the `messaging` session in the `pom.xml`.
+As we just did in the database session, let's start uncommenting the `messaging` session in the `pom.xml`.
 
-In RestRouter.java, set a simple text message to return in the body.
+In `RestRouter.java`, set a simple text message to return in the body.
 
 [source,java]
 ----
@@ -47,7 +47,7 @@ In RestRouter.java, set a simple text message to return in the body.
     .endRest();
 ----
 
-Run the application and test, calling the POST async method accessing the Swagger UI page. Use the following body:
+Run the application and test it by calling the POST async method accessing the Swagger UI page. Use the following body:
 
 [source,javascript]
 ----
@@ -61,7 +61,7 @@ Run the application and test, calling the POST async method accessing the Swagge
 
 image::./images/lab04-messaging-01.png[]
 
-Now, let's wiretap the body to work with the body async in the background.
+Now, let's *wiretap* the body to work with the body async in the background.
 
 [source,java]
 ----
@@ -95,7 +95,7 @@ Your code should looks like this:
 
 image::./images/messaging-code.png[]
 
-Run the application and test, calling the POST async method accessing the Swagger UI page.
+Run the application and test it by calling the POST async method accessing the Swagger UI page.
 
 Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on OpenShift, we'll take a look in the AMQ console.
 
@@ -103,6 +103,8 @@ image::./images/lab04-messaging-03.png[]
 
 [type=verification]
 Do you see the message  *"processing order async"* in the logs when you create a new Order?
+
+=== Consuming from Queues
 
 Everything should be working fine. To simulate the entire flow, let's create another route in the same RouteBuilder to consume from the queue and persist this information in the database. This second route could be another system consuming this message. Remember that this kind of architecture aims to decouple applications from one another. It could even perform retries in case of failures, scale independently of the consumer/producer, etc.
 
@@ -130,5 +132,6 @@ We covered a lot of things during this lab. Here's a quick recap:
 * How to run an **embedded Broker** in a local environment
 * Working **asynchronously** with the **wireTap** Enterprise Integration Pattern
 * Producing and Consuming messages
+
 
 You can now proceed to link:{next-lab-url}[Openshift].

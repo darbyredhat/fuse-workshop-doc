@@ -41,11 +41,10 @@ image::./images/open-class.gif[]
 As you can see, this is a very simple Camel Router already defined for you. A Camel Router is a class that extends `RouteBuilder` and implements the configure method. Let's focus on the code that really matters at the moment.
 
 
-[source,java]
-----
-from("timer:generate")
-  .log("Hello router!");
-----
+
+    from("timer:generate")
+    .log("Hello router!");
+
 
 This code is using the timer component, with all default configurations, it will be executed every second (default value), printing the message *Hello router!"* in the console.
 
@@ -75,12 +74,17 @@ Now, Run the project, if it's already running stop it closing the terminal tab a
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
-    mvn spring-boot:run
+[source,bash]
+----
+mvn spring-boot:run
+----
 
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
 
 {empty} +
+
+=== Concepts
 
 Think of Camel as a pipeline that transports things *from* someplace to *another one*, and this message body flows through the pipes.
 

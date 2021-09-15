@@ -34,7 +34,7 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 * link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
 
-Lab Requirements
+=== Lab Requirements
 
 . Cloud
 .. Web Browser
@@ -51,7 +51,7 @@ Lab Requirements
 ... Plugin: *Language Support for Apache Camel*
 .. https://filezilla-project.org/download.php?type=client[Filezila]
 
-Knowledge Requirements
+=== Knowledge Requirements
 
 . Java
 . Maven
@@ -78,7 +78,7 @@ Credentials:
 
 {empty} +
 
-On the page is opened, click on the workspace as showed in the picture
+On the opened page, click on the workspace as showed in the picture
 
 image::images/01-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
 
@@ -88,9 +88,11 @@ When the setup is ready you should see a screen like this:
 
 image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
+    A warning may show up suggesting you to upgrade the Java plugin to Java 11. *DON'T DO IT*. This labs uses Java 8.
+
 {empty} +
 
-Now, that you succesfully created the workspace take a while exploring the project structure using the `left menu`.
+Now, that you successfully started the workspace take a while exploring the project structure using the `left menu`.
 
 image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly-img-responsive"]
 
@@ -98,7 +100,7 @@ image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly
 
 Run the project
 
-. On the left menu, click on the cube icon and under the tools menu structure click on `Run application locally`
+. On the left menu, click on the cube icon and under the tools menu structure click on `run application locally`
 . You should see the application build and then run
 
 image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
@@ -111,7 +113,7 @@ image::images/5-open-web-app.png[Running Application, role="integr8ly-img-respon
 
 {empty} +
 
-In the end you should see a web app on the side menu, and a `hello router ` message in the logs.
+In the end you should see a web app on the side menu, and a `hello router` message in the logs.
 
 image::images/6-lab-final.png[Running Application, role="integr8ly-img-responsive"]
 
