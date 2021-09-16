@@ -88,7 +88,7 @@ Now, instead of calling the SQL directly, let's send the order to a message brok
 ----
 from("direct:create-order")
     .log("sending ${body.item} to JMS queue")
-    .to("activemq:queue:orders");
+    .to("jms:queue:orders");
 ----
 
 Your code should looks like this:
@@ -111,7 +111,7 @@ Everything should be working fine. To simulate the entire flow, let's create ano
 [source,java]
 ----
 // Consume from the message broker queue
-from("activemq:queue:orders")
+from("jms:queue:orders")
     .log("received ${body.item} from JMS queue")
     .to(this.insertOrder)
     .to("mock:notify-by-email");
