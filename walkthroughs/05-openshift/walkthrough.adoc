@@ -87,14 +87,14 @@ image::./images/08.png[]
 
 On the configuration select *Yaml view*  and paste the following content:
 
-[source]
+[source,yaml,subs="attributes+", id="amq-cr"]
 ----
 apiVersion: broker.amq.io/v2alpha4
 kind: ActiveMQArtemis
 metadata:
   name: amq-broker
   application: amq-broker
-  namespace: <user-username>-project
+  namespace: {user-username}-project
 spec:
   deploymentPlan:
     size: 1
@@ -113,8 +113,6 @@ spec:
 ----
 
 {empty} +
-
-NOTE: Replace *<user-username>* with `{user-username}`, then click *Create*.
 
 image::./images/09.png[]
 
