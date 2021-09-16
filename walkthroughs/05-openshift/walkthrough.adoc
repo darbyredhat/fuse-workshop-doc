@@ -94,7 +94,7 @@ kind: ActiveMQArtemis
 metadata:
   name: amq-broker
   application: amq-broker
-  namespace: {user-username}-project
+  namespace: <user-username>-project
 spec:
   deploymentPlan:
     size: 1
@@ -114,7 +114,7 @@ spec:
 
 {empty} +
 
-Replace *{user-username}* with your user name, then click *Create*.
+Replace *<user-username>* with `{user-username}`, then click *Create*.
 
 image::./images/09.png[]
 
@@ -122,13 +122,13 @@ If everything worked fine, you should see a screen like this:
 
 image::./images/10.png[]
 
-Now, let's open the Management Console of the AMQ Broker.
+Now, let's open the Management Console of the AMQ Broker. On the left panel, click *Search*. On the resources dropbox, select `Route`.
 
 image::./images/11.png[]
 
 {empty} +
 
-Click in the Route link.
+Click on the Route URL.
 
 image::./images/12.png[]
 
@@ -146,10 +146,12 @@ Enter the following credentials:
 image::./images/14.png[]
 
 {empty} +
+This is AMQ Console main page. Click on the Queues tab.
 
 image::./images/15.png[]
 
 {empty} +
+You may use this page to monitor the queues statistics.
 
 image::./images/16.png[]
 
@@ -158,11 +160,13 @@ image::./images/16.png[]
 [type=verification]
 Were you able to deploy AMQ?
 
-As you can see the Address we need is not created. Follow theses steps to create it:
+As you can see the Address we need is not created. Follow theses steps to create it. On the left panel, click *+Add* then *Operator Backed*.
 
 image::./images/17.png[]
 
 {empty} +
+
+Click *Create*.
 
 image::./images/18.png[]
 
@@ -185,7 +189,7 @@ Were you able to deploy the new Queue?
 [time=15]
 == Application deployment to OpenShift using Binary Deployment
 
-Before using the `fabric8` maven plugin, first we need to login to OpenShift. On the right side panel, execute the `login to openshift` command.
+Before using the `fabric8` maven plugin, first we need to log in OpenShift. On the right side panel, execute the `log in openshift` command.
 
 image::./images/lab05-login-command.png[]
 
@@ -219,7 +223,7 @@ In the OpenShift console right panel, click on *+Add -> Operator Backed*, then s
 
 image::./images/lab05-console-01.png[]
 
-Click in the `Create` button. You won't need to change anything in the form. Just click `Create` again.
+Click on the `Create` button. You won't need to change anything in the form. Just click `Create` again.
 
 image::./images/lab05-console-02.png[]
 
@@ -228,7 +232,7 @@ Once the deployment is done, you may access the console's `Route`.
 image::./images/lab05-console-03.png[]
 
 
-. You will be prompted to log in with username `{user-username}` & password `{user-password}`
+. You will be prompted to log in with username `{user-username}` and password `{user-password}`
 . You will be asked to authorize the access. Allow it by clicking `Allow select permissions`.
 
 
@@ -239,7 +243,7 @@ Once logged in you will see the homepage. You should also see your application r
 
 image::./images/lab05-fuse-console-new-03.png[]
 
-Click the *Connect* button to connect the console to your running application
+Click on the *Connect* button to connect the console to your running application
 
 image::./images/lab05-fuse-console-new-04.png[]
 
@@ -252,10 +256,12 @@ Select `Routes` on the side menu and look for the statistics changing. If you wo
 
 [source,bash]
 ----
-ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project)
+ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n <user-username>-project)
 
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
+
+Replace <user-username> with `{user-username}`.
 
 
 It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
@@ -266,7 +272,7 @@ image::./images/lab05-fuse-console-new-05.png[]
 +
 image::./images/lab05-fuse-console-new-06.png[]
 
-. Click the *Source* tab. This will show the route source code as XML:
+. Click on the *Source* tab. This will show the route source code as XML:
 +
 image::./images/lab05-fuse-console-new-07.png[]
 
@@ -300,7 +306,7 @@ image::./images/lab05-s2i-02.png[]
 . The interface will identify the correct language used by the project. Now set `openjdk-8-ubi8` as the Builder image and `workshop` as the *Application Name* and *Name*. Then click create.
 +
 image::./images/lab05-s2i-03.png[]
-. On the build and deploy are done, you will be able to see the container and in the following image. You may try it by click in the Route button.
+. On the build and deploy are done, you will be able to see the container and in the following image. You may try it by click on the Route button.
 +
 image::./images/lab05-s2i-04.png[]
 
