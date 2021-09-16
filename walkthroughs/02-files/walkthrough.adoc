@@ -130,13 +130,9 @@ To check if the file was save, we are going to list the files of the `/tmp/fuse-
 
 {empty} +
 
-To open the terminal, click on `Terminal` on the top menu, then `Open terminal in a specific Container` and select `tools`.
+To open the terminal, click on `New terminal` on the right panel.
 
-image::./images/lab02-file-code-01.png[]
-
-{empty} +
-
-image::./images/lab02-file-code-02.png[]
+image::./images/lab02-newterminal.png[]
 
 {empty} +
 
@@ -147,7 +143,9 @@ Then you can run the following command to list the files:
 ls /tmp/fuse-workshop/*
 ----
 
-image::./images/lab02-file-code-03.png[]
+{empty}
+
+image::./images/lab03-listfiles.png[]
 
 [type=verification]
 Do you see the files inside the `/tmp/fuse-workshop` directories?
@@ -163,14 +161,14 @@ Camel:
 .to("file:/tmp/fuse-workshop/camel?fileName=camel-${date:now:yyyy-MM-dd-HHmmssSSS}.txt")
 ----
 
-ActiveMQ
+ActiveMQ:
 
 [source,java]
 ----
 .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.txt");
 ----
 
-Run the integration
+Run the integration:
 
 image::./images/lab02-file-pretty-names.png[]
 
@@ -211,9 +209,7 @@ from("direct:book-to-file")
             .to("file:/tmp/fuse-workshop/activemq?fileName=activemq-${date:now:yyyy-MM-dd-HHmmssSSS}.xml");
 ----
 
-Run the integration
-
-image::./images/lab02-content-base-router.png[]
+Run the integration and then list the directory again.
 
 [type=verification]
 Do you see the files with the correct extensions? Is the content of each file what you would expect?
@@ -233,8 +229,10 @@ Open the `OrderProcessor.java` file, and implement the logic to change the attri
 
 [source,java]
 ----
+Order order = exchange.getIn().getBody(Order.class);
 order.setProcessed(true);
 System.out.println("attributed process changed");
+exchange.getOut().setBody(order);
 ----
 
 Like this:

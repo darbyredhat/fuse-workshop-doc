@@ -136,9 +136,9 @@ If you are looking to build the project in your own environment (local machine),
 
 {empty} +
 
-Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`
+Replace your `~/.m2/settings.xml` by the `fuse-workshop/configuration/settings.xml`.
 
-If you already have all installed, just clone the git repository and run `mvn install`
+If you already have all installed, just clone the git repository and run `mvn install`.
 
 [source,bash]
 ----

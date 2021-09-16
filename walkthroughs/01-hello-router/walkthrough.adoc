@@ -32,9 +32,9 @@ Let's explore a simple scenario where we are going to use a timer component to g
 == Timer component
 
 Using the *fuse-workshop* project, open the class `OrderGenerator.java`. You can use the project navigation to it, or use the short key `CTRL + P` or `CMD + P` and type `OrderGenerator`.
-If you are having trouble finding it, look in `src/main/java/com/redhat/fuse/booster/rest/routers/lab01` folder.
+If you are having trouble finding it, look in `src/main/java/com/redhat/workshop/fuse/routers/` folder.
 
-image::./images/open-class.gif[]
+image::./images/lab01-openclass.png[]
 
 {empty} +
 
@@ -62,7 +62,7 @@ from("timer:generate?repeatCount=5&period=1000")
 
 Use *CTRL* + *SPACE* to use the auto complete feature, if it is available.
 
-image::./images/codeready-autocomplete.gif[]
+image::./images/lab01-autocomplete.png[]
 
 {empty} +
 
