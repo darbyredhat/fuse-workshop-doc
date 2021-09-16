@@ -44,7 +44,7 @@ Open `RestRouter.java`. Inside the `configure()` method, declare our first REST 
 
 === Get all orders (GET)
 
-In the ,RestRouter.java` copy the following code and paste it over `// insert your rest code here`.
+In the `RestRouter.java` copy the following code and paste it over `// insert your rest code here`.
 
 [source,java]
 ----

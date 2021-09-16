@@ -45,21 +45,23 @@ image::./images/01.png[]
 
 {empty} +
 
-Click on *From Catalog*
+Click on *From Catalog*.
 
 image::./images/02.png[]
 
 {empty} +
 
-Then look for *mysql* & select the *MySQL (Ephemeral)* option
+Then look for *mysql* and select the *MySQL (Ephemeral)* option.
 
 image::./images/03.png[]
 
 {empty} +
 
+Click on *Instantiate Template*.
+
 image::./images/04.png[]
 
-Fill *MySQL Connection Username, MySQL Connection Password, & MySQL root user Password* as *redhat* and then click *Create*.
+Fill out *MySQL Connection Username*, *MySQL Connection Password* and *MySQL root user Password* as *redhat* and then click *Create*.
 
 {empty} +
 
@@ -79,6 +81,7 @@ Filter by the *AMQ Broker* option and select *AMQ Broker* option.
 image::./images/07.png[]
 
 {empty} +
+Click on *Create*.
 
 image::./images/08.png[]
 
@@ -111,11 +114,11 @@ spec:
 
 {empty} +
 
-Replace `{user-username}` with your user name, then click *Create*.
+Replace *{user-username}* with your user name, then click *Create*.
 
 image::./images/09.png[]
 
-If everything worked fine, you should see a screen like that:
+If everything worked fine, you should see a screen like this:
 
 image::./images/10.png[]
 
