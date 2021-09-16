@@ -114,7 +114,7 @@ spec:
 
 {empty} +
 
-Replace *<user-username>* with `{user-username}`, then click *Create*.
+NOTE: Replace *<user-username>* with `{user-username}`, then click *Create*.
 
 image::./images/09.png[]
 
@@ -254,14 +254,14 @@ Are you able to connect to the application?
 
 Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
-[source,bash]
+[subs="attributes+", id="rest-script"]
 ----
-ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n <user-username>-project)
+export ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project)
 
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
 
-Replace <user-username> with `{user-username}`.
+NOTE: Replace <user-username> with `{user-username}`.
 
 
 It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.

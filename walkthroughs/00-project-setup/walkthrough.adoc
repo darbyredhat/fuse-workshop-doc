@@ -88,7 +88,7 @@ When the setup is ready you should see a screen like this:
 
 image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
-    A warning may show up suggesting you to upgrade the Java plugin to Java 11. *DON'T DO IT*. This labs uses Java 8.
+NOTE: A warning may show up suggesting you to upgrade the Java plugin to Java 11. *DON'T DO IT*. This labs uses Java 8.
 
 {empty} +
 
