@@ -254,14 +254,12 @@ Are you able to connect to the application?
 
 Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
-[subs="attributes+", id="rest-script"]
+[source,bash,subs="attributes+", id="rest-script"]
 ----
 export ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project)
 
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
-
-NOTE: Replace <user-username> with `{user-username}`.
 
 
 It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
