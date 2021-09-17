@@ -24,7 +24,6 @@ and in case of any issue please https://github.com/GuilhermeCamposo/fuse-worksho
 . https://www.okd.io/download.html[oc client (Openshift Command Line)]
 . https://code.visualstudio.com/download[Visual Studio Code]
 .. Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
-. https://filezilla-project.org/download.php?type=client[Filezila (Optional)]
 
 == Agenda
 
@@ -44,7 +43,7 @@ and in case of any issue please https://github.com/GuilhermeCamposo/fuse-worksho
 
     * Hello-router
 
-    * Files-ftp
+    * Files
 
     * Rest-database
 
@@ -57,8 +56,6 @@ and in case of any issue please https://github.com/GuilhermeCamposo/fuse-worksho
     * Messaging
 
     * OpenShift
-
-    * Fuse Bonus Lab
 
 | 16:30-17:00
 | Recap and summary
@@ -86,5 +83,7 @@ image::./images/walkthrough-catalog.png[Walkthough Catalog]
 
 
 == Install Lab by Using Ansible
+
+This installation depends on the Quarkus Workshop. Order it and once it is provisioned, run the following playbook.
 
     ansible-playbook -e ocp_token= -e domain=  -e num_users=  install-workshop.yml

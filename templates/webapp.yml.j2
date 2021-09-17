@@ -13,6 +13,7 @@ spec:
       OPENSHIFT_OAUTHCLIENT_ID: "{{ webapp_client_id }}"
       OPENSHIFT_OAUTH_HOST: "oauth-openshift.{{ openshift_host }}"
       OPENSHIFT_HOST: "console-openshift-console.{{ openshift_host }}"
+      INSTALLATION_TYPE: workshop
       INSTALLED_SERVICES: |-
         {
           "codeready":{
