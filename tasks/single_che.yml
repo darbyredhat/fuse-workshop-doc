@@ -58,7 +58,7 @@
   delay: "10"
   register: namespaces
 
-- name: Create workspace for user from devfile
+- name: Create Fuse Workshop workspace for user from devfile
   uri:
     url: "https://codeready-codeready.{{ route_subdomain }}/api/workspace/devfile?start-after-create=true&namespace=user{{ item }}"
     validate_certs: false
@@ -67,6 +67,19 @@
       Content-Type: application/json
       Authorization: "Bearer {{ user_token.json.access_token }}"
     body: "{{ lookup('template', './templates/devfile.json.j2') }}"
+    body_format: json
+    status_code: 201,409
+  register: workspace_def
+
+- name: Create Camel K Workshop workspace for user from devfile
+  uri:
+    url: "https://codeready-codeready.{{ route_subdomain }}/api/workspace/devfile?namespace=user{{ item }}"
+    validate_certs: false
+    method: POST
+    headers:
+      Content-Type: application/json
+      Authorization: "Bearer {{ user_token.json.access_token }}"
+    body: "{{ lookup('template', './templates/java11-devfile.json.j2') }}"
     body_format: json
     status_code: 201,409
   register: workspace_def

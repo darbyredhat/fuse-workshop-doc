@@ -17,6 +17,7 @@
       - crd.yaml
     webapp_walkthrough_locations:
       - 'https://github.com/GuilhermeCamposo/fuse-workshop-doc'
+      - 'https://github.com/GuilhermeCamposo/camelk-workshop-doc'
   tasks:
     - name: login as super user with token on OpenShift 4
       command: "oc login --token={{ ocp_token }}  --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}"
@@ -37,6 +38,9 @@
 
     - name: Provision Fuse Console Operator
       include_tasks: tasks/provision_fuseconsole.yml
+
+    - name: Provision CamelK Operator
+      include_tasks: tasks/provision_camelk.yml
 
     - name: Patch get-username
       k8s:

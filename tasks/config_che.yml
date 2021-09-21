@@ -1,4 +1,16 @@
 ---
+# - name: Change CHE number of workspace per user
+#   k8s:
+#     definition:
+#       apiVersion: org.eclipse.che/v1
+#       kind: CheCluster
+#       metadata:
+#         name: codeready-workspaces
+#         namespace: codeready
+#       spec:
+#         server:
+#           customCheProperties:
+#               CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
 
 - name: Config Workspaces
   include_tasks: single_che.yml

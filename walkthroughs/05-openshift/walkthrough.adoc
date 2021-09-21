@@ -96,6 +96,13 @@ metadata:
   application: amq-broker
   namespace: {user-username}-project
 spec:
+  acceptors:
+    - enabledProtocols: amqp
+      name: amqp
+      port: 5672
+    - enabledProtocols: core
+      name: core
+      port: 61616
   deploymentPlan:
     size: 1
     image: >-
