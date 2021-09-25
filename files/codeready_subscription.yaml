@@ -1,13 +1,13 @@
+---
 apiVersion: operators.coreos.com/v1alpha1
 kind: Subscription
 metadata:
-  name: red-hat-camel-k
-  namespace: {{ user_project }}
-  labels:
-    operators.coreos.com/red-hat-camel-k.user1-project: ''
+  name: codeready-workspaces
+  namespace: codeready
 spec:
-  channel: 1.4.x
+  channel: latest
   installPlanApproval: Automatic
-  name: red-hat-camel-k
+  name: codeready-workspaces
   source: redhat-operators
   sourceNamespace: openshift-marketplace
+  startingCSV: crwoperator.v2.11.0

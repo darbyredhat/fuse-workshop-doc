@@ -11,13 +11,13 @@ spec:
     path: "{{ webapp_operator_template_path }}"
     parameters:
       OPENSHIFT_OAUTHCLIENT_ID: "{{ webapp_client_id }}"
-      OPENSHIFT_OAUTH_HOST: "oauth-openshift.{{ openshift_host }}"
-      OPENSHIFT_HOST: "console-openshift-console.{{ openshift_host }}"
+      OPENSHIFT_OAUTH_HOST: "oauth-openshift.{{ route_subdomain }}"
+      OPENSHIFT_HOST: "console-openshift-console.{{ route_subdomain }}"
       INSTALLATION_TYPE: workshop
       INSTALLED_SERVICES: |-
         {
           "codeready":{
-              "Host":"http://codeready-codeready.{{ openshift_host }}",
+              "Host":"http://codeready-codeready.{{ route_subdomain }}",
               "Version":"2.0.0"
           }
         }

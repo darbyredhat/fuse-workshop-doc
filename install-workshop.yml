@@ -3,6 +3,11 @@
   vars:
     insecure_skip_tls_verify: true
     ocp_username: opentlc-mgr
+    # CHE configuration
+    workshop_rhsso_admin_user_name: admin
+    workshop_rhsso_admin_password: admin
+    workshop_openshift_user_password: openshift
+    workshop_che_user_password: openshift
     # provision_webapp
     webapp_operator_release_tag: '0.0.63'
     webapp_client_id: tutorial-web-app
@@ -19,6 +24,15 @@
       - 'https://github.com/GuilhermeCamposo/fuse-workshop-doc'
       - 'https://github.com/GuilhermeCamposo/camelk-workshop-doc'
   tasks:
+
+    - name: Set Subdomain
+      set_fact:
+        route_subdomain: "apps.{{ domain }}"
+
+    - name: Set console_url
+      set_fact:
+        console_url: "https://console-openshift-console.{{ route_subdomain }}"
+
     - name: login as super user with token on OpenShift 4
       command: "oc login --token={{ ocp_token }}  --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }}"
       when:
@@ -29,9 +43,9 @@
 
     - name: Provision Solution Explorer
       include_tasks: tasks/provision_webapp.yml
-      vars:
-        configmap_name: "extra-services"
-        snapshot_operator_project: "openshift-marketplace"
+
+    - name: Provision CRW
+      include_tasks: tasks/provision_che.yml
 
     - name: Provision AMQ Broker Operator
       include_tasks: tasks/provision_amqbroker.yml
@@ -41,28 +55,3 @@
 
     - name: Provision CamelK Operator
       include_tasks: tasks/provision_camelk.yml
-
-    - name: Patch get-username
-      k8s:
-        definition:
-          apiVersion: apps.openshift.io/v1
-          kind: DeploymentConfig
-          metadata:
-            name: get-a-username
-            namespace: guides
-          spec:
-            template:
-              spec:
-                containers:
-                  - name: get-a-username
-                    env:
-                      - name: LAB_TITLE
-                        value: 'Fuse Workshop'
-                      - name: LAB_MODULE_URLS
-                        value: 'https://{{ webapp_secure_route }};Solution Explorer'
-
-    - name: Change Che Namespaces
-      include_tasks: tasks/config_che.yml
-      vars:
-        route_subdomain: 'apps.{{ domain }}'
-        workshop_che_user_password: openshift

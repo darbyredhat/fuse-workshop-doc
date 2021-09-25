@@ -86,4 +86,4 @@ image::./images/walkthrough-catalog.png[Walkthough Catalog]
 
 This installation depends on the Quarkus Workshop. Order it and once it is provisioned, run the following playbook.
 
-    ansible-playbook -e ocp_token= -e domain=  -e num_users=  install-workshop.yml
+    ansible-playbook -e ocp_token= -e domain=  -e num_users= install-workshop.yml

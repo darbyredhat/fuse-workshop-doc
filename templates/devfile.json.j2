@@ -1,7 +1,7 @@
 {
   "apiVersion": "1.0.0",
   "metadata": {
-    "generateName": "fuse-workshop-"
+    "name": "fuse-workshop"
   },
   "projects": [
     {
@@ -82,7 +82,7 @@
         {
           "type": "exec",
           "component": "tools",
-          "command": "oc login -p openshift -u user{{ item }} --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }} && oc project user{{ item }}-project",
+          "command": "oc login -p openshift -u {{ user }} --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }} && oc project {{ user }}-project",
           "workdir": "${CHE_PROJECTS_ROOT}/fuse-workshop"
         }
       ]
