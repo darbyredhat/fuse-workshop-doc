@@ -12,6 +12,8 @@
     body_format: form-urlencoded
     status_code: 200
   register: user_token
+  retries: 10
+  delay: 10
 
 ## to start workspace start-after-create=true
 
@@ -26,7 +28,10 @@
     body: "{{ lookup('template', './templates/devfile.json.j2') }}"
     body_format: json
     status_code: 201,409
-  register: workspace_def
+  register: _result
+  until: _result.status == 201 or _result.status == 409
+  retries: 10
+  delay: 15
 
 - name: Create Camel K Workshop workspace for user from devfile
   uri:
@@ -39,4 +44,7 @@
     body: "{{ lookup('template', './templates/java11-devfile.json.j2') }}"
     body_format: json
     status_code: 201,409
-  register: workspace_def
+  register: _result
+  until: _result.status == 201 or _result.status == 409
+  retries: 10
+  delay: 15

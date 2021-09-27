@@ -1,6 +1,7 @@
 - hosts: localhost
   name: Install Fuse Workshop
   vars:
+    delete_workshop: false
     insecure_skip_tls_verify: true
     ocp_username: opentlc-mgr
     # CHE configuration
@@ -43,15 +44,33 @@
 
     - name: Provision Solution Explorer
       include_tasks: tasks/provision_webapp.yml
+      when: not delete_workshop
 
     - name: Provision CRW
       include_tasks: tasks/provision_che.yml
+      when: not delete_workshop
 
     - name: Provision AMQ Broker Operator
-      include_tasks: tasks/provision_amqbroker.yml
+      include_tasks: tasks/provision_amq.yml
+      with_sequence: start=1 end={{ num_users }}
+      when:
+        - num_users|int > 0
+        - not delete_workshop
 
     - name: Provision Fuse Console Operator
+      with_sequence: start=1 end={{ num_users }}
+      when:
+        - num_users|int > 0
+        - not delete_workshop
       include_tasks: tasks/provision_fuseconsole.yml
 
     - name: Provision CamelK Operator
+      with_sequence: start=1 end={{ num_users }}
+      when:
+        - num_users|int > 0
+        - not delete_workshop
       include_tasks: tasks/provision_camelk.yml
+
+    - name: Delete Workshop
+      include_tasks: tasks/delete_workshop.yml
+      when: delete_workshop

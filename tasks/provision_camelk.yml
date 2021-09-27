@@ -1,8 +1,15 @@
 ---
 
+- name: Define User Project Name
+  set_fact:
+    user_project: 'user{{ item }}-project'
 
-- name: Subscribe Camelk Operator
-  include_tasks: single_camelk.yml
-  with_sequence: start=1 end={{ num_users }}
-  when:
-    - num_users|int > 0
+- name: Evaluate Operator Group
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'operatorgroup.yml.j2') }}"
+
+- name: Evaluate CamelK Subscription
+  k8s:
+    state: present
+    resource_definition: "{{ lookup('template', 'camelk_subscription.yml.j2') }}"

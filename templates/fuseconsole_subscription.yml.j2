@@ -4,8 +4,9 @@ metadata:
   name: fuse-console
   namespace: {{ user_project }}
 spec:
-  channel: fuse-console-7.8.x
+  channel: 7.9.x
   installPlanApproval: Automatic
   name: fuse-console
-  source: redhat-operators-index
+  source: redhat-operators
   sourceNamespace: openshift-marketplace
+  startingCSV: fuse-console.v7.9.0

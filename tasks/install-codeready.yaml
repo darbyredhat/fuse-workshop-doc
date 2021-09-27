@@ -151,7 +151,7 @@
   when:
     - num_users|int > 0
 
-- name: wait a minute and let the image download and be registered
-  when: num_users | int > 0
-  pause:
-      minutes: 2
+# - name: wait a minute and let the image download and be registered
+#   when: num_users | int > 0
+#   pause:
+#       minutes: 2
