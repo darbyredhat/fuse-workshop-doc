@@ -17,7 +17,7 @@ spec:
     serverMemoryLimit: '6Gi'
     customCheProperties:
       CHE_LIMITS_WORKSPACE_IDLE_TIMEOUT: "0"
-      CHE_LIMITS_USER_WORKSPACES_COUNT: "2"
+      CHE_LIMITS_USER_WORKSPACES_RUN_COUNT: "2"
   database:
     externalDb: false
     chePostgresHostName: ''
