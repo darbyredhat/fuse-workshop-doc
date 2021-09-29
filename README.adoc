@@ -38,13 +38,19 @@ If you use CodeReady Workspaces, you just need a updated browser, preferably Chr
 | Parameter | Example Value                                      | Definition
 | ocp_token | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | access token for a user with cluster-admin previleges
 | domain    | my-cluster.company.com                             | Cluster domain. If you have a console url like this https://console-openshift-console.apps.my-cluster.company.com, your domain is my-cluster.company.com.
-| num_users | 8                                                  | Number of users expected in the workshop. Please, have in mind that the more users you have, more resources you are going to need from the cluster.       
+| num_users | 8                                                  | Number of users expected in the workshop. Please, have in mind that the more users you have, more resources you are going to need from the cluster.
 |=======================
 
 === Running the playbook
 
     ansible-playbook -e ocp_token= -e domain=  -e num_users= install-workshop.yml
 
+=== Getting the user registration page
+
+    echo "https://$(oc get routes get-a-username -o jsonpath='{.spec.host}' -n guides)"
+
+[quote]
+this will become an Ansible task in the future.    
 
 
 in case of any issue please https://github.com/GuilhermeCamposo/fuse-workshop-doc/issues[fill an issue].
