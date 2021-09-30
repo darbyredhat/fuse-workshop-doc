@@ -1,8 +1,13 @@
 ---
+- name: initialize username array
+  set_fact:
+    users: []
+
 - name: create usernames
   set_fact:
-    users: "{{ ['user'+item | string] }}"
+    users: "{{ users + ['user'+item | string] }}"
   loop: "{{ range(1,((num_users | int) + 1)) | list }}"
+
 
 - name: create projects for users
   include_tasks: create_project.yaml
