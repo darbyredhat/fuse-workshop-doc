@@ -10,9 +10,13 @@ https://docs.google.com/presentation/d/1EtypdwfEHpc2X1emJXIZDKKZPwWVIn5TzcCaElY0
 
 == Pre Requirements
 
+=== Resource Consumption per User
+
+image::./images/resources.png[]
+
 === OpenShift 4.8 Workshop
 
-Use this environment to provision a OpenShift cluster with authentication for attendees.
+Use this environment to provision a OpenShift cluster with authentication for attendees. Take the above resource consumption as a base to calculate the amount of resource you will need for your workshop.
 
 
 === Remote Environment (CodeReady Workspaces)
@@ -50,7 +54,7 @@ If you use CodeReady Workspaces, you just need a updated browser, preferably Chr
     echo "https://$(oc get routes get-a-username -o jsonpath='{.spec.host}' -n guides)"
 
 [quote]
-this will become an Ansible task in the future.    
+this will become an Ansible task in the future.
 
 
 in case of any issue please https://github.com/GuilhermeCamposo/fuse-workshop-doc/issues[fill an issue].
