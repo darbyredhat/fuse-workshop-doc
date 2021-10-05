@@ -88,7 +88,7 @@ image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly
 
 Run the project
 
-. On the left menu, click on the cube icon and under the tools menu structure click on `run app locally`
+. On the right menu, click on the cube icon and under the tools menu structure click on `run app locally`
 . You should see the application build and then run
 
 image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
