@@ -15,13 +15,11 @@
   "components": [
     {
       "type": "chePlugin",
-      "id": "redhat/vscode-apache-camel/latest",
-      "alias": "vscode-camel"
+      "id": "redhat/vscode-apache-camel/latest"
     },
     {
       "type": "chePlugin",
-      "id": "redhat/vscode-openshift-connector/latest",
-      "alias": "vscode-openshift"
+      "id": "redhat/vscode-openshift-connector/latest"
     },
     {
       "type": "dockerimage",
@@ -107,15 +105,6 @@
           "component": "tools",
           "command": "mvn clean fabric8:deploy -P openshift -DskipTests -Dspring.profiles.active=prod -Dfabric8.generator.from=fuse7-java-openshift:1.7 \n",
           "workdir": "${CHE_PROJECTS_ROOT}/fuse-workshop"
-        }
-      ]
-    },
-    {
-      "name": "Debug remote java application",
-      "actions": [
-        {
-          "type": "vscode-launch",
-          "referenceContent": "{\n\"version\": \"0.2.0\",\n\"configurations\": [\n  {\n    \"type\": \"java\",\n    \"name\": \"Debug (Attach) - Remote\",\n    \"request\": \"attach\",\n    \"hostName\": \"localhost\",\n    \"port\": 5005\n  }]\n}\n"
         }
       ]
     }

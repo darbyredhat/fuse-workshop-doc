@@ -18,30 +18,10 @@
   },
     {
       "type": "dockerimage",
-      "alias": "tools",
+      "alias": "camelk-tools",
       "image": "quay.io/gcamposo/java11-tools:latest",
-      "env": [
-        {
-          "name": "MAVEN_CONFIG",
-          "value": ""
-        },
-        {
-          "name": "JAVA_OPTS",
-          "value": "-XX:MaxRAMPercentage=50.0 -XX:+UseParallelGC -XX:MinHeapFreeRatio=10 -XX:MaxHeapFreeRatio=20 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90 -Dsun.zip.disableMemoryMapping=true -Xms20m -Djava.security.egd=file:/dev/./urandom -Duser.home=/home/user"
-        },
-        {
-          "name": "MAVEN_OPTS",
-          "value": "$(JAVA_OPTS)"
-        }
-      ],
       "memoryLimit": "4294Mi",
-      "mountSources": true,
-      "volumes": [
-        {
-          "name": "m2",
-          "containerPath": "/home/user/.m2"
-        }
-      ]
+      "mountSources": true
     }
   ],
   "commands": [
@@ -50,7 +30,7 @@
       "actions": [
         {
           "type": "exec",
-          "component": "tools",
+          "component": "camelk-tools",
           "command": "oc login -p openshift -u {{ user }} --server=https://api.{{ domain }}:6443 --insecure-skip-tls-verify={{ insecure_skip_tls_verify }} && oc project {{ user }}-project",
           "workdir": "${CHE_PROJECTS_ROOT}"
         }
