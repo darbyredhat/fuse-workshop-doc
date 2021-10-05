@@ -121,7 +121,6 @@ image::./images/lab03-rest-definition.png[]
 
 Run the application again. This time let's check the swagger definition. You can access it by opening the preview page and clicking in the `API Swagger Page` button.
 
-In case you are doing it locally change the Schema to *HTTP*.
 
 {empty} +
 
@@ -347,4 +346,4 @@ We covered a lot of things during this lab. Here's a quick recap:
 * Interacting with a database using the SQL component
 * Auto generating API docs (Swagger)
 
-You can now proceed to link:{next-lab-url}[Messaging].
+You can now proceed to `Messaging`.

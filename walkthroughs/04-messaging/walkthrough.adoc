@@ -134,4 +134,4 @@ We covered a lot of things during this lab. Here's a quick recap:
 * Producing and Consuming messages
 
 
-You can now proceed to link:{next-lab-url}[Openshift].
+You can now proceed to `Openshift`.
