@@ -1,60 +1,9 @@
-== Red Hat Fuse Workshop
+= Red Hat Fuse Workshop Doc
 
 This project is a sequence of hands-on labs to help people understand Red Hat Fuse based on the community project Apache Camel  in a hands-on approach.
 
-This is focused on the Fuse with Spring Boot. But also have a few labs with Camel K and Fuse Online (Syndesis)
+This is focused on the Fuse with Spring Boot.
 
 Those walkthroughs follow the structure to be deployed in the *Red Hat Integreatly* environment.
 
-https://docs.google.com/presentation/d/1EtypdwfEHpc2X1emJXIZDKKZPwWVIn5TzcCaElY04v4[Workshop Presentation Deck]
-
-== Pre Requirements
-
-=== Resource Consumption per User
-
-image::./images/resources.png[]
-
-=== OpenShift 4.8 Workshop
-
-Use this environment to provision a OpenShift cluster with authentication for attendees. Take the above resource consumption as a base to calculate the amount of resource you will need for your workshop.
-
-
-=== Remote Environment (CodeReady Workspaces)
-
-If you use CodeReady Workspaces, you just need a updated browser, preferably Chrome or Firefox :)
-
-=== Local environment
-
-. At least 4 GB RAM
-. JDK 1.8+
-. Git
-. https://www.okd.io/download.html[oc client (Openshift Command Line)]
-. https://code.visualstudio.com/download[Visual Studio Code]
-.. Plugin: https://marketplace.visualstudio.com/items?itemName=redhat.apache-camel-extension-pack[Extension Pack for Apache Camel]
-
-
-== Install The Lab by Using Ansible
-
-=== Parameters
-
-[options="header"]
-|=======================
-| Parameter | Example Value                                      | Definition
-| ocp_token | sha256~vFanQbthlPKfsaldJT3bdLXIyEkd7ypO_XPygY1DNtQ | access token for a user with cluster-admin previleges
-| domain    | my-cluster.company.com                             | Cluster domain. If you have a console url like this https://console-openshift-console.apps.my-cluster.company.com, your domain is my-cluster.company.com.
-| num_users | 8                                                  | Number of users expected in the workshop. Please, have in mind that the more users you have, more resources you are going to need from the cluster.
-|=======================
-
-=== Running the playbook
-
-    ansible-playbook -e ocp_token= -e domain=  -e num_users= install-workshop.yml
-
-=== Getting the user registration page
-
-    echo "https://$(oc get routes get-a-username -o jsonpath='{.spec.host}' -n guides)"
-
-[quote]
-this will become an Ansible task in the future.
-
-
-in case of any issue please https://github.com/GuilhermeCamposo/fuse-workshop-doc/issues[fill an issue].
+For information on how to install it go to https://github.com/GuilhermeCamposo/fuse-workshop-deployer[fuse-workshop-deployer].
