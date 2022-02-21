@@ -246,7 +246,7 @@ We will continue working with the same REST resources but adding database intera
 There are three strings (*selectAll*, *selectById*, *insertOrder*) already defined in the `RestRouter` class to retrieve/create information from a database that we will use on the REST DSL to interact with database.
 
 Before starting, include the databases libs necessary in the `pom.xml` file.
-You can do it uncommenting the `database session`. In this lab you will be using an embedded database, so don't worry about any installation process.
+You can do it uncommenting the `database section`. In this lab you will be using an embedded database, so don't worry about any installation process.
 
 image::./images/database-session-pom.png[]
 

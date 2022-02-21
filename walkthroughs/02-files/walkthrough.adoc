@@ -5,7 +5,7 @@
 
 = Lab 2 - Integration with Files
 
-Explore the basic concepts of Camel, with a use case with FILE  doing some basic transformations with POJO, XML and JSON.
+Explore the basic concepts of Camel in a use case with FILE doing some basic transformations with POJO, XML and JSON.
 
 image::./images/lab02-content-base-router.png[]
 
@@ -71,7 +71,7 @@ from("timer:generate?repeatCount=5&period=1000")
 .to("direct:book-to-file");
 ----
 
-Now, let's implement the Content-Based Router pattern:
+Let's implement the Content-Based Router pattern. In the same method add the following route:
 
 [source,java]
 ----
@@ -87,7 +87,7 @@ The `configure()` method should look like this:
 
 image::./images/lab02-cbr-code.png[]
 
-We are comparing the *item* attribute of the object Order and print a message.
+We are comparing the *item* attribute of the object Order and printing a message.
 
 Run the integration.
 
@@ -101,9 +101,9 @@ Do you see both messages *Processing a Camel book* and *Processing an ActiveMQ b
 
 https://camel.apache.org/file.html[window="_blank"]
 
-Let's use a new *File* component to persist this order on the filesystem. The *File* component is powerful and enables us to interact with the file system easily.
+Let's use a new component, *File*, to persist this order on the filesystem. *File* is powerful component that enables us to interact with the file system easily.
 
-Adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
+To adjust the route to persist the Camel book in the directory `/tmp/fuse-workshop/camel` and the ActiveMQ book in  `/tmp/fuse-workshop/activemq`
 
 image::./images/lab02-filesystem.png[]
 
@@ -152,7 +152,7 @@ Do you see the files inside the `/tmp/fuse-workshop` directories?
 
 But wait, look at file names! They are auto-generated and weird! Let's fix these exploring some parameters of the file component.
 
-Change the last line as the following:
+Change the component declaration as following:
 
 Camel:
 
@@ -221,11 +221,11 @@ Let's add some adrenaline to it! Let's change the `Order` attribute `processed` 
 
 image::./images/lab02-content-base-router.png[]
 
-One way to do it is by using a `Processor`. With a `Processor`, you can have total control of the message and headers being sent through the Camel pipeline.
+One way to do it is by using a `Processor`. With a `Processor`, you can manipulate the content of an `Exchange` going through the route.
 
-Let's create a process, capture `Order` object on the Camel body, and change the attribute `process` to *`true`*.
+Let's add a Processor, capture `Order` object in the Exchange's body, and change the attribute `process` to *`true`*.
 
-Open the `OrderProcessor.java` file, and implement the logic to change the attribute `processed` of the `Order` object.
+Open the `OrderProcessor.java` file and implement the logic to change the attribute `processed` of the `Order` object.
 
 [source,java]
 ----
@@ -277,4 +277,4 @@ We covered a lot of things during this lab. Here's a quick recap:
 * File component
 * Processor (To add some custom logic to your route)
 
-You can now proceed to link:{next-lab-url}[REST and Database].
+You can now proceed to `REST and Database`.

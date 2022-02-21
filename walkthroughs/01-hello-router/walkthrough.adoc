@@ -70,7 +70,7 @@ image::./images/camel-structure.png[]
 
 This is the basis of how components work.
 
-Now, Run the project, if it's already running stop it closing the terminal tab and click on `Run`.
+Now, Run the project, if it's already running stop it closing the terminal tab and click on `run app locally`.
 
 If you are doing it locally, you can run as a standard spring-boot application.
 
@@ -103,7 +103,7 @@ Take some time and take a look at https://access.redhat.com/documentation/en-us/
 
 Now, take a look in the class `OrderService.java`, it generates an `Order.java` object, alternating some values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using the *bean* method. Copy the following code and paste it over the route.
+Let's call this method to get a new Order using the *bean* method. Copy the following code and paste it over the `OrderGenerator.java` route.
 
 [source,java]
 ----
@@ -131,4 +131,4 @@ Congratulations you finished the Hello World Camel lab!
 
 In this lab you learned about Camel pipelines and how they work. You also learned how to interact with Java Beans directly from the Camel DSL.
 
-You can now proceed to link:{next-lab-url}[Working with Files].
+You can now proceed to `Working with Files`.
