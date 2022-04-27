@@ -34,13 +34,13 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 * link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
 
-=== Lab Requirements
+== Lab Requirements
 
 . Cloud
 .. Web Browser
 
 
-=== Knowledge Requirements
+== Knowledge Requirements
 
 . Java
 . Maven
