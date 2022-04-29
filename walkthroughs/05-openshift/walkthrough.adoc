@@ -5,15 +5,16 @@
 
 = Lab 5 - Publish to OpenShift
 
-There are several ways to deploy an application into OpenShift
+There are several ways to deploy an application into OpenShift, the most common are:
 
 . Directly from the git repository using S2I
 . From the local machine using binary deployment
 . From a Docker image
 
-For this lab we will start with the binary deployment option (#2 above), uploading the code directly from the workspace to OpenShift.
-For this to work, we will need the `oc` client working in our local machine.
-In the last section you will see how to use S2I to deploy applications.
+For this lab we will start with the binary deployment option (#2 above), uploading the binary directly from the IDE workspace to OpenShift.
+For this to work we will need the `oc` client installed in the environment.
+
+In the last section you will see how to use S2I to deploy applications, a way to deploy application using git repositories.
 
 [type=walkthroughResource,serviceName=codeready]
 .CodeReady Workspaces
@@ -37,10 +38,10 @@ In the last section you will see how to use S2I to deploy applications.
 [time=5]
 == MySQL Database provisioning
 
-First, to work with the MySQL database in production, we have to deploy/provision it.
+First, to work with the MySQL database we have to deploy/provision it.
 
 Go to the link:{openshift-host}[OpenShift Console, window="_blank"].
-Click on *Add*  on the left menu.
+On the *Developer* view, click on *Add*  on the left menu.
 
 image::./images/01.png[]
 
@@ -77,7 +78,7 @@ Were you able to deploy Mysql?
 Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
 Select *Operator Backed* option.
 
-Filter by the *AMQ Broker* option and select *AMQ Broker* option.
+Filter by *AMQ Broker* and select the *AMQ Broker* tile.
 
 image::./images/07.png[]
 
@@ -203,7 +204,7 @@ Were you able to deploy the new Queue?
 
 Before using the `fabric8` maven plugin, first we need to log in OpenShift. On the right side panel, click on the `log in openshift` command.
 
-image::./images/lab05-login-command.png[]
+image::./images/22.png[]
 
 Once the login process is done, you should see a similar message.
 
@@ -211,7 +212,7 @@ image::./images/lab05-after-login.png[]
 
 Now that you are logged in, on the right panel, click on the `deploy to openshift` command. This command you build the project locally and push it to OpenShift, where a container image will be created.
 
-image::./images/lab05-deploy-ocp.png[]
+image::./images/24.png[]
 
 
 
