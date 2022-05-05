@@ -75,10 +75,8 @@ Were you able to deploy Mysql?
 [time=5]
 == AMQ provisioning
 
-Let's provisioning an AMQ Broker on this step. As on the previous step, click on *Add* on the left side menu.
-Select *Operator Backed* option.
-
-Filter by *AMQ Broker* and select the *AMQ Broker* tile.
+Let's provision an AMQ Broker on this step. On the *Developer* view, click on *Add* on the left side menu.
+Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Broker* tile.
 
 image::./images/07.png[]
 
