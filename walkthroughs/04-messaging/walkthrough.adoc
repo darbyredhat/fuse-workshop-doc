@@ -6,7 +6,7 @@
 
 = Lab 4 - Messaging
 
-Asynchronous messaging helps to de-couple applications. Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not worry so much about how to share it.
+Asynchronous messaging helps to decouple applications. Messaging makes the messaging system responsible for transferring data from one application to another, so the apps can focus on what data they need to share but not how that data is processed.
 
 Let's create a RESTful endpoint that returns a quick response to the user, but do all the processing in the background. We are going to use the http://camel.apache.org/wiretap.html[wiretap] component to make a copy of the message in the Camel pipeline and post it in a JMS queue. After we recover from the queue and insert the order into the database, then notify the user by email.
 
@@ -47,6 +47,8 @@ In `RestRouter.java`, set a simple text message to return in the body.
     .endRest();
 ----
 
+{empty} +
+
 Run the application and test it by calling the POST async method accessing the Swagger UI page. Use the following body:
 
 [source,javascript]
@@ -59,22 +61,28 @@ Run the application and test it by calling the POST async method accessing the S
 }
 ----
 
+{empty} +
+
 image::./images/lab04-messaging-01.png[]
 
-Now, let's *wiretap* the body to work with the body async in the background.
+{empty} +
+
+Now, let's *wiretap* the body to work with it asynchronously, while the Exchanged is still processed in the main route.
 
 [source,java]
 ----
-    .post("/async").type(Order.class).description("Create a new order")
-        .route().routeId("create-order-async")
-        .log("Order received")
-        .wireTap("direct:create-order")
-        .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
-        .endRest();
+.post("/async").type(Order.class).description("Create a new order")
+    .route().routeId("create-order-async")
+    .log("Order received")
+    .wireTap("direct:create-order")
+    .setBody().simple("We received your request. As soon we process your request we will notify you by email.")
+    .endRest();
 
-    from("direct:create-order")
-        .log("processing order async");
+from("direct:create-order")
+    .log("processing order async");
 ----
+
+{empty} +
 
 Run again and check the log to see if the new message *" processing order async "* appeared.
 
@@ -82,7 +90,7 @@ image::./images/lab04-post-async.png[]
 
 {empty} +
 
-Now, instead of calling the SQL directly, let's send the order to a message broker.
+Now, instead of calling the SQL directly, let's send the order to a message broker:
 
 [source,java]
 ----
@@ -91,23 +99,30 @@ from("direct:create-order")
     .to("jms:queue:orders");
 ----
 
+{empty} +
+
 Your code should looks like this:
 
 image::./images/messaging-code.png[]
 
-Run the application and test it by calling the POST async method accessing the Swagger UI page.
+{empty} +
 
-Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console, so don't worry with it for now. When we deploy it on OpenShift, we'll take a look in the AMQ console.
+Run the application and test it by calling the POST async method, by accessing the Swagger UI page.
+
+Check the logs to see the messages exchanged in the queue. As we are using an embedded broker to test our application without the need to deploy in any place, there isn't a web console.
+Don't worry about it for now. When we deploy it on OpenShift, we'll use AMQ console.
 
 image::./images/lab04-messaging-03.png[]
+
+{empty} +
 
 [type=verification]
 Do you see the message  *"processing order async"* in the logs when you create a new Order?
 
 === Consuming from Queues
 
-Everything should be working fine. To simulate the entire flow, let's create another route, in the same RouteBuilder, to consume from the queue and persist this information in the database. This new route could be another system consuming this message.
-Remember that this kind of architecture aims to decouple applications from one another. It could even perform retries in case of failures, scale independently of the consumer/producer, etc.
+Everything should be working fine. To simulate the entire flow, let's create another route in the same RouteBuilder, to consume from the queue and persist this information in the database. This new route could be another system consuming this message.
+Remember that this kind of architecture aims to decouple applications from one another.
 
 [source,java]
 ----
@@ -117,6 +132,8 @@ from("jms:queue:orders")
     .to(this.insertOrder)
     .to("mock:notify-by-email");
 ----
+
+{empty} +
 
 Re-run the integration and look at the logs.
 

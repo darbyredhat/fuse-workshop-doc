@@ -34,16 +34,20 @@ This *fuse-workshop* project is a Red Hat Fuse (aka https://camel.apache.org[Apa
 * link:https://launch.openshift.io[Create new projects using Launcher, window="_blank"]
 ****
 
-== Lab Requirements
-
-. Cloud
-.. Web Browser
-
+== Requirements
 
 == Knowledge Requirements
 
-. Java
-. Maven
+We prepared this content in a way that anyone can execute the labs and get an understanding of what is happening and the desired outcomes.
+Although for a better and deeper experience, so previous knowledge is require:
+
+- Basic Java
+- Basic Maven
+
+== Tools Requirements
+
+- You won't need any specific tool installed in your workstation. We only require an updated web browser, preferably Chrome or Firefox.
+
 
 [time=5]
 == Setup Code Ready Workspace
@@ -66,13 +70,13 @@ Credentials:
 
 {empty} +
 
-On the opened page, click on the workspace as showed in the picture
+On the opened page, click on the workspace as showed in the picture:
 
 image::images/01-workspace.png[Che Workspace, role="integr8ly-img-responsive"]
 
 {empty} +
 
-When the setup is ready you should see a screen like this:
+When the setup is ready, you should see a screen like this:
 
 image::images/2-workspace-created.png[Importing project, role="integr8ly-img-responsive"]
 
@@ -86,16 +90,15 @@ image::images/3-che-side-menu.png[Side Menu - Project Structure, role="integr8ly
 
 {empty} +
 
-Run the project
+=== Running the project
 
-. On the right menu, click on the cube icon and under the tools menu structure click on `run app locally`
-. You should see the application build and then run
+On the right menu, click on the cube icon. Under the tools menu, click on `run app locally`. You should see the application build starting and then application running.
 
 image::images/4-che-run-locally.png[Running Application, role="integr8ly-img-responsive"]
 
 {empty} +
 
-As this project is a web app (we are going to explore it in future labs) codeready workspaces will suggest to you to open a link, click on `Open Link`.
+As this is a web application, we are going to explore it in future labs, Codeready Workspaces will suggest to you to open a link. Click on `Open Link`.
 
 image::images/5-open-web-app.png[Running Application, role="integr8ly-img-responsive"]
 
@@ -117,7 +120,7 @@ Are you seeing a loop hello message in the logs?
 [time=1]
 == Summary
 
-Congratulations you finished the setup of your environment!
+Congratulations, you finished the setup of your environment!
 
 In this lab, you learned how to set up a Fuse on Spring Boot project using CodeReady Workspaces.
 

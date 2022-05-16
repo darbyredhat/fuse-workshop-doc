@@ -7,12 +7,12 @@
 
 There are several ways to deploy an application into OpenShift, the most common are:
 
-. Directly from the git repository using S2I
-. From the local machine using binary deployment
-. From a Docker image
+- Directly from the git repository using S2I
+- From the local machine using binary deployment
+- From a Docker image
 
 For this lab we will start with the binary deployment option (#2 above), uploading the binary directly from the IDE workspace to OpenShift.
-For this to work we will need the `oc` client installed in the environment.
+For it to work we will need the `oc` client that is installed in the environment.
 
 In the last section you will see how to use S2I to deploy applications, a way to deploy application using git repositories.
 
@@ -69,6 +69,8 @@ Fill out *MySQL Connection Username*, *MySQL Connection Password* and *MySQL roo
 
 image::./images/05.png[]
 
+{empty} +
+
 [type=verification]
 Were you able to deploy Mysql?
 
@@ -81,9 +83,12 @@ Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Brok
 image::./images/07.png[]
 
 {empty} +
+
 Click on *Create*.
 
 image::./images/08.png[]
+
+{empty} +
 
 On the configuration select *Yaml view*  and paste the following content:
 
@@ -129,9 +134,13 @@ spec:
 
 image::./images/09.png[]
 
+{empty} +
+
 If everything worked fine, you should see a screen like this:
 
 image::./images/10.png[]
+
+{empty} +
 
 Now, let's open the Management Console of the AMQ Broker. On the left panel, click *Search*. On the resources dropbox, select `Route`.
 
@@ -144,10 +153,12 @@ Click on the Route URL.
 image::./images/12.png[]
 
 {empty} +
+
 Click on *Management Console*.
 
 image::./images/13.png[]
 
+{empty} +
 
 Enter the following credentials:
 
@@ -157,11 +168,13 @@ Enter the following credentials:
 image::./images/14.png[]
 
 {empty} +
+
 This is AMQ Console main page. Click on the Queues tab.
 
 image::./images/15.png[]
 
 {empty} +
+
 You may use this page to monitor the queues statistics.
 
 image::./images/16.png[]
@@ -193,6 +206,7 @@ Now you will be able to visualize the queue using the web console.
 
 image::./images/21.png[]
 
+{empty} +
 
 [type=verification]
 Were you able to deploy the new Queue?
@@ -204,21 +218,27 @@ Before using the `fabric8` maven plugin, first we need to log in OpenShift. On t
 
 image::./images/22.png[]
 
-Once the login process is done, you should see a similar message.
+{empty} +
+
+Once the login process is done, you should see a similar message:
 
 image::./images/lab05-after-login.png[]
 
-Now that you are logged in, on the right panel, click on the `deploy to openshift` command. This command you build the project locally and push it to OpenShift, where a container image will be created.
+{empty} +
+
+Now that you are logged in, on the right panel, click on the `deploy to openshift` command.
+This command you build the project locally and push it to OpenShift, where a container image will be created.
 
 image::./images/24.png[]
 
+{empty} +
 
+The `fabric8:deploy` maven goal uses the k8s authentication configuration present in the user home.
+It also uses a binary deployment, meaning it builds your application binary locally and sends the resulting jar to OpenShift to "wrap" in a container image and deploy it.
 
-The `fabric8:deploy` maven goal uses the oc client authentication under the hood. It also uses a binary deployment, meaning it builds your application binary locally and sends that to OpenShift to "wrap" in a container image & deploy.
-
-After `fabric8:deploy`, take a look in the target folder inside the project. More specifically, look at `target/docker/fuse-workshop/latest/build`. This shows the source of the container that was built.
-
-After the deployment completes you will see that the application is using both the AMQ Broker & the MySQL database deployed on OpenShift. All of the production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment within in `src/main/fabric8/deployment.yml` config file. Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
+After the deployment completes, you will see that the application is using both the AMQ Broker and the MySQL database deployed on OpenShift.
+All production configuration data is in the `src/main/resources/application-prod.properties` file and we are activating this profile during the deployment in `src/main/fabric8/deployment.yml` config file.
+Fabric8 will inject this content inside of the final DeploymentConfig when deploying to Openshift.
 
 
 [type=verification]
@@ -234,91 +254,122 @@ In the OpenShift console right panel, click on *+Add -> Operator Backed*, then s
 
 image::./images/lab05-console-01.png[]
 
+{empty} +
+
 Click on the `Create` button. You won't need to change anything in the form. Just click `Create` again.
 
 image::./images/lab05-console-02.png[]
+
+{empty} +
 
 Once the deployment is done, you may access the console's `Route`.
 
 image::./images/lab05-console-03.png[]
 
+{empty} +
 
-. You will be prompted to log in with username `{user-username}` and password `{user-password}`
-. You will be asked to authorize the access. Allow it by clicking `Allow select permissions`.
-
+- You will be prompted to log in with username `{user-username}` and password `{user-password}`
+- You will be asked to authorize the access. Allow it by clicking `Allow select permissions`.
 
 
 image::./images/lab05-console-04.png[]
+
+{empty} +
 
 Once logged in you will see the homepage. You should also see your application registered
 
 image::./images/lab05-fuse-console-new-03.png[]
 
+{empty} +
+
 Click on the *Connect* button to connect the console to your running application
 
 image::./images/lab05-fuse-console-new-04.png[]
 
+{empty} +
 
 [type=verification]
 Are you able to connect to the application?
 
 
-Select `Routes` on the side menu and look for the statistics changing. If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
+Select `Routes` on the side menu and look for the statistics changing.
+If you would like to generate some data, capture the URL of list all orders as an example and do the following script in your terminal:
 
-[source,bash,subs="attributes+", id="rest-script"]
+[source,bash]
 ----
 export ROUTE=$(oc get route fuse-workshop -o jsonpath='{.spec.host}' -n {user-username}-project)
 
 while(true); do curl http://$ROUTE/camel/orders; sleep 1; done
 ----
 
+{empty} +
 
 It will make one request per second, so you have some data to see on the console. You should see the *Completed* number on the *all-orders* route increase.
 
 image::./images/lab05-fuse-console-new-05.png[]
 
+{empty} +
+
 . Now, click on *Route Diagram*. You will see the route in a more human-readable way, and the count of requests flowing through the routes.
-+
+
 image::./images/lab05-fuse-console-new-06.png[]
 
+{empty} +
+
 . Click on the *Source* tab. This will show the route source code as XML:
-+
+
 image::./images/lab05-fuse-console-new-07.png[]
+
+{empty} +
 
 . Let's try to do some debugging
 .. Select the `all-orders` route on the side menu
 .. Click on the *Debug* tab
 
-+
 image::./images/lab05-fuse-console-new-08.png[]
+
+{empty} +
+
 .. Click on *Start debugging*
 .. Double-click on the `Log` step. A breakpoint should appear on the box.
 
-+
 image::./images/lab05-fuse-console-new-09.png[]
+
+{empty} +
 
 Make another request to get all the orders. You should see a window appear with all the header & body information of the message within the exchange. Now, let's close the debug by clicking *Stop debugging* in the upper-right corner. Otherwise, it will stay stuck until a timeout in every request.
 
 [time=5]
 == Application deployment on OpenShift using S2I
 
-Binary deployment is effective when you are doing a lot of changes and do not like to commit to see the results. A very common practice is to deploy the application automatically on each commit. Also s2i is more often used inside CICD pipelines.
+Binary deployment is effective when you are doing a lot of changes and do not want to push them to git in order to test the results.
+When working in shared environments, we commonly use git as source of truth. To simplify this process you can deploy the code using Source-to-Image(s2i), a feature that abstracts the complexity of creating container images and sharing it.
 
 Let's deploy the same application but using the S2I strategy.
 
 . In the *Developer View*, click *+ADD*, then select *From Git*.
-+
+
 image::./images/lab05-s2i-01.png[]
+
+{empty} +
+
 . Add the repository `https://github.com/GuilhermeCamposo/fuse-workshop.git` and `labs-complete` as the branch reference.
-+
+
 image::./images/lab05-s2i-02.png[]
+
+{empty} +
+
 . The interface will identify the correct language used by the project. Now set `openjdk-8-ubi8` as the Builder image and `workshop` as the *Application Name* and *Name*. Then click create.
-+
+
 image::./images/lab05-s2i-03.png[]
+
+{empty} +
+
 . On the build and deploy are done, you will be able to see the container and in the following image. You may try it by click on the Route button.
-+
+
 image::./images/lab05-s2i-04.png[]
 
+{empty} +
 
 [type=verification]
 Were you able to deploy the application?

@@ -40,11 +40,13 @@ image::./images/lab01-openclass.png[]
 
 As you can see, this is a very simple Camel Router already defined for you. A Camel Router is a class that extends `RouteBuilder` and implements the configure method. Let's focus on the code that really matters at the moment.
 
+[source,java]
+----
+from("timer:generate")
+.log("Hello router!");
+----
 
-
-    from("timer:generate")
-    .log("Hello router!");
-
+{empty} +
 
 This code is using the timer component, with all default configurations, it will be executed every second (default value), printing the message *Hello router!"* in the console.
 
@@ -57,8 +59,10 @@ Now, let's use some parameters with timer component to repeat *only 5 times* wit
 [source,java]
 ----
 from("timer:generate?repeatCount=5&period=1000")
-    .log("Hello router!");
+.log("Hello router!");
 ----
+
+{empty} +
 
 Use *CTRL* + *SPACE* to use the auto complete feature, if it is available.
 
@@ -68,42 +72,39 @@ image::./images/lab01-autocomplete.png[]
 
 image::./images/camel-structure.png[]
 
-This is the basis of how components work.
+{empty} +
 
-Now, Run the project, if it's already running stop it closing the terminal tab and click on `run app locally`.
+This is the basic of how components work.
 
-If you are doing it locally, you can run as a standard spring-boot application.
-
-[source,bash]
-----
-mvn spring-boot:run
-----
+Now, run the project. If it's already running, stop it by closing the terminal tab, then click on `run app locally`.
 
 [type=verification]
 Do you see 5 *Hello router!* messages on the console?
 
 {empty} +
 
-=== Concepts
+== Concepts
 
-Think of Camel as a pipeline that transports things *from* someplace to *another one*, and this message body flows through the pipes.
+Think of Camel as a pipeline that transports data *from* a source to *one or more destinations*, and data flows through the pipes.
 
 Camel’s syntax is inspired by the UNIX pipeline. In UNIX, we might execute something like `ps -fe | grep foo`. When we run this command, the output of the `ps` command becomes the input to the `grep` command. We “pipe” the output of one command into the input of another command.
+This sequence of actions in called `Route`.
 
-Camel chains these actions together in an object called an `Exchange`, which consists of an input message (called the “In” message), some sort of processor (like a component, for instance) and possibly an output or “Out” message if the processor is meant to provide a synchronous response.
+image:./images/camel-pipeline.png[Route]
 
-A series of `Exchange` state changes creates a Camel Route.
+This pipeline execution state is tracked in an object called an `Exchange`
 
-image:./images/camel-pipeline.png[]
+Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_fuse/7.10/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the Camel routing works.
 
-Take some time and take a look at https://access.redhat.com/documentation/en-us/red_hat_fuse/7.4/html/apache_camel_development_guide/basicprinciples[this documentation] to understand better how the Camel pipeline works.
+[type=verification]
+Did you check documentation?
 
 [time=10]
 == Generating Orders Automatically
 
-Now, take a look in the class `OrderService.java`, it generates an `Order.java` object, alternating some values between *Camel* and *ActiveMQ*.
+Now, take a look in the class `OrderService.java`. It generates an `Order.java` object, alternating some values between *Camel* and *ActiveMQ*.
 
-Let's call this method to get a new Order using the *bean* method. Copy the following code and paste it over the `OrderGenerator.java` route.
+Let's call this method to get a new Order using the *bean* method. Copy the following code and paste it over the `OrderGenerator.java` route:
 
 [source,java]
 ----
@@ -113,13 +114,13 @@ from("timer:generate?repeatCount=5&period=1000")
     .log("Order ${body.item} generated");
 ----
 
-Now, it is using the `OrderService` class to generate a new `Order` and print some information in the console. Run the code again.
+Now, the route is using the `OrderService` class to generate a new `Order` and print some information in the console. Run the code again.
 
 image:./images/output-logs.png[]
 
 And... Where is the Order object?
 
-If your answer was in the body, you are right!
+If your answer was in the `Message body`, you are right!
 
 [type=verification]
 Do you see different Orders by the messages on the console?
@@ -127,7 +128,7 @@ Do you see different Orders by the messages on the console?
 [time=1]
 == Summary
 
-Congratulations you finished the Hello World Camel lab!
+Congratulations, you finished the Hello World Camel lab!
 
 In this lab you learned about Camel pipelines and how they work. You also learned how to interact with Java Beans directly from the Camel DSL.
 
