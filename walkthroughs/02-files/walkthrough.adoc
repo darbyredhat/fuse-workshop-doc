@@ -190,9 +190,9 @@ Let's transform the Camel type to JSON and the ActiveMQ to XML.
 
 image::./images/lab02-content-base-router.png[]
 
-To work with Data Format, we have two methods: *marshall()* and *unmarshal()*.
+To work with Data Format, we have two methods: *marshal()* and *unmarshal()*.
 
-* *marshall()* is used to convert a Java Beans in other datatype as XML, JSON, CSV, etc.
+* *marshal()* is used to convert a Java Beans in other datatype as XML, JSON, CSV, etc.
 * *unmarshal()* is used when we have a datatype as XML, JSON, CSV, etc, and would like to transform into a Java Object.
 
 Let's remove the transformation of the body to `String` and do a proper transformation.
