@@ -80,7 +80,7 @@ Were you able to deploy Mysql?
 == AMQ provisioning
 
 Let's provision an AMQ Broker on this step. On the *Developer* view, click on *Add* on the left side menu.
-Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Broker* tile.
+Select *Operator Backed* option. Filter by *AMQ Broker* and select the *AMQ Broker* tile:
 
 image::./images/07.png[]
 
